@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  color: #cdcdcd;
+}
+
+body {
+  background-color: #15161a;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.nav__wrapper {
+  position: fixed;
+  width: 260px;
+  height: 100%;
+  background: #1e1f24;
+  border-left: 10px solid #1e1f24;
+  transition: 0.7s;
+}
+.nav__list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.nav__item {
+  position: relative;
+  width: 250px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.nav__item a {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.nav__item:hover {
+  background: #15161a;
+}
+.nav__item:hover span, .nav__item:hover :first-child {
+  color: #a7f0b4;
+}
+.nav__item:hover a::before {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: -40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 30px 30px 0 10px #15161a;
+}
+.nav__item:hover a::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  bottom: -40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 30px -30px 0 10px #15161a;
+}
+.nav__icon {
+  position: relative;
+  min-width: 60px;
+  height: 40px;
+  line-height: 52px;
+  text-align: center;
+}
+.nav__icon :first-child {
+  font-size: 1.5rem;
+}
+.nav__title {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.logo {
+  margin: 20px 0;
+  pointer-events: none;
+}
+.logo__icon img {
+  width: 40px;
+  height: 40px;
+}
+.logo__title {
+  color: #f4f6f9;
+}
+
+.board {
+  position: absolute;
+  width: calc(100% - 260px);
+  left: 260px;
+  padding: 20px;
+  transition: 0.7s;
+}
+.board__item {
+  border: 1px solid #575757;
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(53deg, rgb(30, 31, 36) 27%, rgb(45, 45, 60) 97%, rgb(46, 46, 55) 100%);
+}/*# sourceMappingURL=style.css.map */
