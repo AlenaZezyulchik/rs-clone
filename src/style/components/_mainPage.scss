@@ -1,14 +1,13 @@
 .board {
-  //position: absolute;
-  //width: calc(100% - 260px);
-  left: 260px;
   padding: 20px;
   transition: 0.7s;
-  margin-top: -100px;
-  margin-left: 260px;
+  margin-top: -80px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  gap: 14px;
   &__item {
     border: 1px solid $border-clr;
     border-radius: 10px;
@@ -20,5 +19,6 @@
     flex-direction: column;
     gap: 8px;
     background: linear-gradient(53deg, rgb(30, 31, 36) 27%, rgb(45, 45, 60) 97%, rgb(46, 46, 55) 100%);
+    opacity: 0.8;
   }
 }

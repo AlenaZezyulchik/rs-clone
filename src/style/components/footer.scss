@@ -7,11 +7,17 @@
 .developers {
   display: flex;
   justify-content: space-around;
-  margin-left: 300px;
   font-size: 14px;
+  & img,
+  a {
+    vertical-align: middle;
+    &:hover {
+      color: $green-text;
+    }
+  }
 }
 
 .github__icon {
   width: 20px;
-  border-radius: 50px;
+  border-radius: 50%;
 }

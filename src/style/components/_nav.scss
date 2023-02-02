@@ -1,12 +1,13 @@
 .nav {
   &__wrapper {
-    position: fixed;
-    width: 260px;
-    height: 100%;
+    position: relative;
+    z-index: 3;
+    width: $nav-width;
+    height: 100vh;
     background: $nav-bg;
     border-left: 10px solid $nav-bg;
     transition: 0.7s;
-    margin-top: -140px;
+
     overflow: hidden;
   }
   &__list {
