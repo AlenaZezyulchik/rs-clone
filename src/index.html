@@ -9,71 +9,107 @@
   </head>
   <body>
     <div class="container">
-      <nav class="nav__wrapper">
-        <ul class="nav__list">
-          <li class="nav__item logo">
-            <a href="#">
-              <span class="nav__icon logo__icon">
-                <img src="./assets/icons/elephant.png" alt="" />
-              </span>
-              <h1 class="nav__title logo__title">Evernote</h1>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="home"></ion-icon>
-              </span>
-              <span class="nav__title">Main</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="documents"></ion-icon>
-              </span>
-              <span class="nav__title">My Notes</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="list-circle"></ion-icon>
-              </span>
-              <span class="nav__title">My To-Do</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="rocket"></ion-icon>
-              </span>
-              <span class="nav__title">My Wishboard</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="library-outline"></ion-icon>
-              </span>
-              <span class="nav__title">My Study</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#">
-              <span class="nav__icon">
-                <ion-icon name="headset"></ion-icon>
-              </span>
-              <span class="nav__title">My Music</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <header class="header">
+        <div class="header__container">
+          <div class="time__container">
+            <time class="time"></time>
+            <date class="date"></date>
+          </div>
+          <div class="greeting__container">
+              <span class="greeting"></span>
+              <input type="text" placeholder="[Enter name]" class="user-name" />
+          </div>
+        </div>
+      </header>
       <main>
+        <nav class="nav__wrapper">
+          <ul class="nav__list">
+            <li class="nav__item logo">
+              <a href="#">
+                <span class="nav__icon logo__icon">
+                  <img src="./assets/icons/elephant.png" alt="" />
+                </span>
+                <h1 class="nav__title logo__title">Evernote</h1>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="home"></ion-icon>
+                </span>
+                <span class="nav__title">Main</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="documents"></ion-icon>
+                </span>
+                <span class="nav__title">My Notes</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="list-circle"></ion-icon>
+                </span>
+                <span class="nav__title">My To-Do</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="rocket"></ion-icon>
+                </span>
+                <span class="nav__title">My Wishboard</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="library-outline"></ion-icon>
+                </span>
+                <span class="nav__title">My Study</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#">
+                <span class="nav__icon">
+                  <ion-icon name="headset"></ion-icon>
+                </span>
+                <span class="nav__title">My Music</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
         <div class="board">
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
+          <div class="board__item">hkjhhjjkl</div>
           <div class="board__item">hkjhhjjkl</div>
         </div>
       </main>
+      <footer class="footer">
+        <ul class="developers">
+          <li>
+            <img class="github__icon" src="./assets/icons/github.png" alt="github">
+            <a href="https://github.com/Alextufeng">Alextufeng</a>
+          </li>
+          <li>
+            <img class="github__icon" src="./assets/icons/github.png" alt="github">
+            <a href="https://github.com/staskv">staskv</a>
+          </li>
+          <li>
+            <img class="github__icon" src="./assets/icons/github.png" alt="github">
+            <a href="https://github.com/alenazezyulchik">alenazezyulchik</a>
+          </li>
+        </ul>
+      </footer>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script type="module" src="index.js"></script>
