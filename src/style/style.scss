@@ -1,4 +1,8 @@
-@import 'base/base';
 @import 'base/constants';
+@import 'base/base';
+
+@import 'components/body';
+@import 'components/nav';
+@import 'components/mainPage';
 @import 'components/header';
 @import 'components/footer';
