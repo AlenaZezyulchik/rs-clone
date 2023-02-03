@@ -17,13 +17,16 @@
   margin-left: 20px;
   cursor: pointer;
   transition: 0.3s;
+  fill: $main-text;
   :hover {
-    color: $green-text;
+    fill: $green-text;
+    transition: 0.4s;
+    transform: scale(1.2) rotate(180deg);
   }
 }
 .burger.active__burger {
   transition: 0.6s;
-  transform: scale(1.2);
+  transform: rotate(45deg);
 }
 .time__container {
   display: flex;

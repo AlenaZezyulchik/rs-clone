@@ -1,0 +1,23 @@
+@media (max-width: 769px) {
+  .nav__wrapper {
+    width: 70px;
+  }
+  .nav__wrapper.active-burger {
+    width: 0px;
+  }
+  .container__main {
+    width: calc(100% - 70px);
+  }
+  .container__main.active-burger {
+    width: 100%;
+  }
+  .nav__wrapper {
+    border: 0px;
+  }
+  .user-name {
+    font-size: 20px;
+  }
+  .burger {
+    min-width: 20px;
+  }
+}
