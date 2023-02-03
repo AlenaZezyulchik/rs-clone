@@ -2,11 +2,16 @@
   display: flex;
   top: 0;
   z-index: 100;
-  width: 100%;
+  width: calc(100% - 260px);
   height: 240px;
   margin-left: 260px;
   padding-top: 40px;
   background-image: url(../assets/img/0.jpg);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 
 .time__container {
@@ -26,7 +31,6 @@
 
 .greeting__container {
   font-size: 20px;
-  padding: 10px;
 }
 
 .greeting {
@@ -45,4 +49,23 @@
 .user-name::placeholder {
   color: #fff;
   opacity: 0.6;
+}
+
+.lang {
+  margin: 10px;
+}
+
+input, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+  select {
+    width: 35px;
+    height: 35px;
+    color: $main-text;
+    background: $nav-bg;
+    border-radius: 90px;
+    padding: 6px;
 }

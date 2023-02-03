@@ -14,12 +14,19 @@
           <div class="time__container">
             <time class="time"></time>
             <date class="date"></date>
-          </div>
-          <div class="greeting__container">
+            <div class="greeting__container">
               <span class="greeting"></span>
               <input type="text" placeholder="[Enter name]" class="user-name" />
           </div>
+          </div>
+
+          <div class="lang">
+            <select class="change-lang">
+                <option value="ru">RU</option>
+                <option value="en" selected>EN</option>
+            </select>
         </div>
+      </div>
       </header>
       <main>
         <nav class="nav__wrapper">
@@ -37,7 +44,7 @@
                 <span class="nav__icon">
                   <ion-icon name="home"></ion-icon>
                 </span>
-                <span class="nav__title">Main</span>
+                <span class="nav__title lang-main">Main</span>
               </a>
             </li>
             <li class="nav__item">
@@ -45,7 +52,7 @@
                 <span class="nav__icon">
                   <ion-icon name="documents"></ion-icon>
                 </span>
-                <span class="nav__title">My Notes</span>
+                <span class="nav__title lang-mynotes">My Notes</span>
               </a>
             </li>
             <li class="nav__item">
@@ -53,7 +60,7 @@
                 <span class="nav__icon">
                   <ion-icon name="list-circle"></ion-icon>
                 </span>
-                <span class="nav__title">My To-Do</span>
+                <span class="nav__title lang-mytodo">My To-Do</span>
               </a>
             </li>
             <li class="nav__item">
@@ -61,7 +68,7 @@
                 <span class="nav__icon">
                   <ion-icon name="rocket"></ion-icon>
                 </span>
-                <span class="nav__title">My Wishboard</span>
+                <span class="nav__title lang-mywishboard">My Wishboard</span>
               </a>
             </li>
             <li class="nav__item">
@@ -69,7 +76,7 @@
                 <span class="nav__icon">
                   <ion-icon name="library-outline"></ion-icon>
                 </span>
-                <span class="nav__title">My Study</span>
+                <span class="nav__title lang-mystudy">My Study</span>
               </a>
             </li>
             <li class="nav__item">
@@ -77,7 +84,7 @@
                 <span class="nav__icon">
                   <ion-icon name="headset"></ion-icon>
                 </span>
-                <span class="nav__title">My Music</span>
+                <span class="nav__title lang-mymusic">My Music</span>
               </a>
             </li>
           </ul>
