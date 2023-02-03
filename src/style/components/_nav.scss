@@ -1,23 +1,23 @@
 .nav {
   &__wrapper {
-    position: fixed;
-    width: 260px;
-    height: 100%;
+    position: relative;
+    width: 250px;
+    z-index: 3;
+    width: $nav-width;
     background: $nav-bg;
     border-left: 10px solid $nav-bg;
     transition: 0.7s;
-    margin-top: -140px;
     overflow: hidden;
   }
   &__list {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    width: 100%;
   }
   &__item {
     position: relative;
-    width: 250px;
+    width: 100%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     a {
@@ -25,33 +25,6 @@
       width: 100%;
       display: flex;
     }
-    /* &:hover {
-      background: $main-bg;
-      & span,
-      & :first-child {
-        color: $green-text;
-      }
-      & a::before {
-        content: '';
-        position: absolute;
-        right: 0px;
-        top: -40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        box-shadow: 30px 30px 0 10px $main-bg;
-      }
-      & a::after {
-        content: '';
-        position: absolute;
-        right: 0px;
-        bottom: -40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        box-shadow: 30px -30px 0 10px $main-bg;
-      }
-    } */
   }
   &__icon {
     position: relative;
@@ -85,14 +58,13 @@
     color: $header-text;
   }
 }
-
 .hovered {
   background: $main-bg;
   & span,
   & :first-child {
     color: $green-text;
   }
-  & a::before {
+  a::before {
     content: '';
     position: absolute;
     right: 0px;
@@ -102,7 +74,7 @@
     border-radius: 50%;
     box-shadow: 30px 30px 0 10px $main-bg;
   }
-  & a::after {
+  a::after {
     content: '';
     position: absolute;
     right: 0px;
@@ -112,4 +84,11 @@
     border-radius: 50%;
     box-shadow: 30px -30px 0 10px $main-bg;
   }
+}
+
+.nav__wrapper.active-burger {
+  width: 80px;
+}
+.container__main.active-burger {
+  width: calc(100% + 80px);
 }

@@ -10,3 +10,15 @@ function notActiveNavLink() {
 
 navList.forEach((navLink) => navLink.addEventListener('mouseover', activeNavLink));
 navList.forEach((navLink) => navLink.addEventListener('mouseout', notActiveNavLink));
+
+let burgerButton = document.querySelector('.burger');
+let navigation = document.querySelector('.nav__wrapper');
+let mainContent = document.querySelector('.container__main');
+let burgerButtonIcon = document.querySelector('.burger ion-icon');
+
+burgerButton.onclick = function () {
+  navigation.classList.toggle('active-burger');
+  mainContent.classList.toggle('active-burger');
+  burgerButton.classList.toggle('active-burger');
+  burgerButtonIcon.classList.toggle('active-burger');
+};
