@@ -35,7 +35,6 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        alertTo();
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',
@@ -43,7 +42,6 @@ function viewBox(): void {
     mystudy: {
       render() {
         pageView.innerHTML = '';
-        alertTo();
       },
       title: 'To-Do List',
       description: 'This is the study page',
@@ -51,7 +49,6 @@ function viewBox(): void {
     mymusic: {
       render() {
         pageView.innerHTML = '';
-        alertTo();
       },
       title: 'Music List',
       description: 'This is the music list page',
