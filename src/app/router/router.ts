@@ -4,6 +4,7 @@ import createFooter from '../main/footer/footer';
 import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
+import createWishBoard from "../../components/wishBoard";
 
 function viewBox(): void {
   const routes = {
@@ -35,6 +36,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
+        appendElement(pageView, createWishBoard())
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',

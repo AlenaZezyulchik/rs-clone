@@ -1,5 +1,5 @@
 import dragula from "dragula";
-const main = document.getElementById("main") as HTMLElement;
+const main = document.querySelector(".container__main") as HTMLDivElement;
 
 const createInput = (): any => {
   return `<input class="wish-board__input" type="text" placeholder="search for..." name="key" autofocus="">
@@ -111,4 +111,4 @@ window.onload = function() {
   }
 }
 
-
+export default createWishBoard;
