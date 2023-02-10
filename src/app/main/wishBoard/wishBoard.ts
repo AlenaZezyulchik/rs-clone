@@ -1,5 +1,9 @@
 import dragula from "dragula";
-const main = document.querySelector(".container__main") as HTMLDivElement;
+import { appendElement } from "../../variables/dom-elements";
+import pageView from "../../variables/dom-variables";
+import createFooter from "../footer/footer";
+import createHeader from "../header/header";
+
 
 const createInput = (): any => {
   return `<input class="wish-board__input" type="text" placeholder="search for..." name="key" autofocus="">
@@ -7,6 +11,8 @@ const createInput = (): any => {
 };
 
 const createWishBoard = () => {
+  
+  const main = document.querySelector(".container__main") as HTMLDivElement;
   const wishBoardContainer = document.createElement("div") as HTMLDivElement;
   const wishBoardCanvas = document.createElement("div") as HTMLDivElement;
   const wishBoardDroppable = document.createElement("div") as HTMLDivElement;
@@ -21,6 +27,7 @@ const createWishBoard = () => {
   wishBoardImages.classList.add("wish-board__images");
   wishBoardSearch.classList.add("wish-board__search");
   wishBoardSearch.innerHTML = createInput();
+  
 
   main.append(wishBoardContainer);
   wishBoardContainer.append(wishBoardCanvas);
@@ -28,13 +35,30 @@ const createWishBoard = () => {
   wishBoardContainer.append(wishBoardContent);
   wishBoardContent.append(wishBoardImages);
   wishBoardContent.append(wishBoardSearch);
-
+  const search = document.querySelector(".magnifying-glass") as HTMLIFrameElement;
+  const inputImage = document.querySelector(".wish-board__input") as HTMLInputElement;
+  search.addEventListener("click", loadImg);
+  inputImage.addEventListener('keydown', function(event){
+    if (event.key === 'Enter')
+        loadImg();
+  });
 return wishBoardContainer;
 };
-createWishBoard();
 
-const search = document.querySelector(".magnifying-glass") as HTMLIFrameElement;
-const inputImage = document.querySelector(".wish-board__input") as HTMLInputElement;
+function createWishboardPage(): HTMLElement {
+  appendElement(pageView, createHeader());
+  appendElement(pageView, createWishBoard());
+  appendElement(pageView, createFooter());
+  loadImg();
+
+getPhotos();
+  return pageView;
+};
+
+//createWishboardPage()
+
+
+
 
 export interface IPhoto {
   id: string;
@@ -47,6 +71,7 @@ let searchText = "nature";
 
 const getPhotos = async(): Promise<{results:Array<IPhoto>}> => {
   const wishBoardImages = document.querySelector(".wish-board__images") as HTMLDivElement;
+  const inputImage = document.querySelector(".wish-board__input") as HTMLInputElement;
   wishBoardImages.innerHTML = "";
   if(inputImage.value.length > 0) {
     searchText = inputImage.value;
@@ -73,16 +98,7 @@ const loadImg = async () => {
     wishBoardImages.append(image);
   });
   };
-loadImg();
 
-search.addEventListener("click", loadImg);
-
-inputImage.addEventListener('keydown', function(event){
-  if (event.key === 'Enter')
-      loadImg();
-});
-
-getPhotos();
 
 window.onload = function() {
   dragula([
@@ -111,4 +127,4 @@ window.onload = function() {
   }
 }
 
-export default createWishBoard;
+export default createWishboardPage;
