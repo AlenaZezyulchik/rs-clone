@@ -109,6 +109,6 @@ window.onload = function() {
     slideFactorX: 0,
     slideFactorY: 0,
   }
-};
+}
 
 
