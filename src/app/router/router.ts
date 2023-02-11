@@ -4,6 +4,7 @@ import createFooter from '../main/footer/footer';
 import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
+import createMusicBox from '../music/music';
 
 function viewBox(): void {
   const routes = {
@@ -49,6 +50,7 @@ function viewBox(): void {
     mymusic: {
       render() {
         pageView.innerHTML = '';
+        createMusicBox();
       },
       title: 'Music List',
       description: 'This is the music list page',
