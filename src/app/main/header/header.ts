@@ -34,25 +34,43 @@ function createHeader() {
   appendElement(greetContainer, greetSpanElem);
   addClasslist(greetSpanElem, 'greeting');
 
-  const greetInputElem: DomElements = <HTMLInputElement>createHtmlElement('input');
+  const greetInputElem = createHtmlElement('input') as HTMLInputElement;
   appendElement(greetContainer, greetInputElem);
   addClasslist(greetInputElem, 'user-name');
   greetInputElem.setAttribute('type', 'text');
   greetInputElem.setAttribute('placeholder', '[Enter name]');
 
+  const rightContainer: DomElements = <HTMLElement>createHtmlElement('div');
+  addClasslist(rightContainer, 'header_right-container');
+  appendElement(header, rightContainer);
+
+  const langContainer: DomElements = <HTMLSelectElement>createHtmlElement('select');
+  addClasslist(langContainer, 'change-lang');
+  appendElement(rightContainer, langContainer);
+
+  const optionRu = document.createElement('option') as HTMLOptionElement;
+  addClasslist(optionRu, 'lang_ru');
+  optionRu.value = "ru";
+  optionRu.innerText = "RU";
+  appendElement(langContainer, optionRu);
+
+  const optionEn = document.createElement('option') as HTMLOptionElement;
+  addClasslist(optionEn, 'lang_en');
+  optionEn.value = "en";
+  optionEn.innerText = "EN"
+  optionEn.setAttribute('selected', 'selected')
+  appendElement(langContainer, optionEn);
+
   const date = new Date();
   let hours: any = date.getHours();
   let min;
   let sec;
-  let timeOfDay: any;
-
-  //const userName = document.querySelector('.user-name') as HTMLInputElement;
 
   function showDate() {
     const date = new Date();
     let options: any = { weekday: 'long', month: 'long', day: 'numeric' };
     dateElem.textContent = date.toLocaleString('en', options);
-  }
+  };
 
   function showTime() {
     const date = new Date();
@@ -61,25 +79,29 @@ function createHeader() {
     sec = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
     timeElem.textContent = `${hours}:${min}:${sec}`;
     showDate();
-  }
+  };
   setInterval(showTime, 1000);
-
-  function showGreeting() {
-    if (hours >= 6 && hours < 12) {
-      timeOfDay = 'morning';
-    }
-    if (hours >= 12 && hours < 18) {
-      timeOfDay = 'afternoon';
-    }
-    if (hours >= 18 && hours < 24) {
-      timeOfDay = 'evening';
-    }
-    if (hours >= 0 && hours < 6) {
-      timeOfDay = 'night';
-    }
-    greetSpanElem.textContent = `Good ${timeOfDay}, `;
-  }
-
+  showGreeting(greetSpanElem);
+  window.addEventListener('beforeunload', () => {setLocalStorage(greetInputElem)});
+  window.addEventListener('load', () => {getLocalStorage(greetInputElem)});
   return header;
-}
+};
+
+function showGreeting(greetSpanElem: HTMLElement) {
+  const date = new Date();
+  let hours: any = date.getHours();
+  let timeOfDay = (hours >= 6 && hours < 12) ? 'morning' : (hours >= 12 && hours < 18) ? 'afternoon' : (hours >= 18 && hours < 24) ? 'evening' : (hours >= 0 && hours < 6) ? 'night' : "";
+  greetSpanElem.textContent = `Good ${timeOfDay}, `;
+};
+
+function setLocalStorage(greetInputElem: HTMLInputElement) {
+  localStorage.setItem('name', greetInputElem.value);
+};
+
+function getLocalStorage(greetInputElem: HTMLInputElement) {
+  if (localStorage.getItem('name')) {
+    greetInputElem.value = localStorage.getItem('name') as string;
+  };
+};
+
 export default createHeader;

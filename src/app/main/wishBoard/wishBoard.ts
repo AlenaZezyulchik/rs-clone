@@ -28,7 +28,6 @@ const createWishBoard = () => {
   wishBoardSearch.classList.add("wish-board__search");
   wishBoardSearch.innerHTML = createInput();
   
-
   main.append(wishBoardContainer);
   wishBoardContainer.append(wishBoardCanvas);
   wishBoardCanvas.append(wishBoardDroppable);
@@ -50,16 +49,9 @@ function createWishboardPage(): HTMLElement {
   appendElement(pageView, createWishBoard());
   appendElement(pageView, createFooter());
   loadImg();
-
-getPhotos();
+  getPhotos();
   return pageView;
 };
-
-//createWishboardPage()
-
-
-
-
 export interface IPhoto {
   id: string;
   urls: {
@@ -87,7 +79,6 @@ const getPhotos = async(): Promise<{results:Array<IPhoto>}> => {
 const loadImg = async () => {
   const wishBoardImages = document.querySelector(".wish-board__images") as HTMLDivElement;
   const photos = await getPhotos();
-  console.log(photos)
   photos.results.forEach(photo => {
     const image = document.createElement("div") as HTMLDivElement;
     image.classList.add("wish-board__image");
@@ -98,7 +89,6 @@ const loadImg = async () => {
     wishBoardImages.append(image);
   });
   };
-
 
 window.onload = function() {
   dragula([

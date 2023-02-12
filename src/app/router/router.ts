@@ -36,7 +36,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createWishboardPage())
+        createWishboardPage();
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',

@@ -6,6 +6,8 @@
 
 .wish-board__container {
   display: flex;
+  z-index: 3;
+  flex: 1;
   transition: 0.7s;
   margin-top: -100px;
  // margin-left: 260px;
@@ -87,7 +89,7 @@
   overflow-y: scroll;
 }
 
-.gu-mirror {   //элемент который находится в движении
+/*.gu-mirror {   //элемент который находится в движении
   position: fixed !important;
   margin: 0 !important;
   z-index: 9999 !important;
@@ -108,7 +110,7 @@
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
-}
+}*/
 
 @media (max-width: 1000px) {
   .wish-board__image {
