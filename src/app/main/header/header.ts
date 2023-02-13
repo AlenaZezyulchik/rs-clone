@@ -44,7 +44,7 @@ function createHeader() {
   addClasslist(rightContainer, 'header_right-container');
   appendElement(header, rightContainer);
 
-  const langContainer: DomElements = <HTMLSelectElement>createHtmlElement('select');
+  const langContainer = document.createElement('select') as HTMLSelectElement;
   addClasslist(langContainer, 'change-lang');
   appendElement(rightContainer, langContainer);
 
@@ -84,6 +84,13 @@ function createHeader() {
   showGreeting(greetSpanElem);
   window.addEventListener('beforeunload', () => {setLocalStorage(greetInputElem)});
   window.addEventListener('load', () => {getLocalStorage(greetInputElem)});
+ 
+  langContainer.addEventListener("change", ()=> {
+    let selectedLang = langContainer.options[langContainer.selectedIndex].value;
+    console.log(selectedLang)
+  });
+
+  
   return header;
 };
 
@@ -103,5 +110,7 @@ function getLocalStorage(greetInputElem: HTMLInputElement) {
     greetInputElem.value = localStorage.getItem('name') as string;
   };
 };
+
+
 
 export default createHeader;

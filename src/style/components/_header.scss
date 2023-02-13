@@ -28,6 +28,13 @@
   transition: 0.6s;
   transform: rotate(45deg);
 }
+
+.header_right-container {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 .time__container {
   display: flex;
   flex-direction: column;
@@ -84,4 +91,22 @@ input, textarea, select {
     background: $nav-bg;
     border-radius: 90px;
     padding: 6px;
+}
+
+@media (max-width: 900px) {
+  .time,
+  .date {
+    font-size: 16px;
+  }
+
+  .user-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .time__container,
+  .greeting__container  {
+    padding: 2px;
+  }
 }
