@@ -2,8 +2,6 @@ import { setNotesList, getALLNotes, NoteInfo, creatingNotesList, chooseNote, cre
 
 export const createMyNotesPage = () : HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
-  const mainContainerHeader = document.querySelector('.header') as HTMLElement;
-  const mainContainerMain = document.querySelector('.main') as HTMLElement;
   const myNotesBtn = document.querySelector('.my-notes') as HTMLElement;
   const myNotesBlock = document.createElement('div') as HTMLElement;
   const allNotesBlock = document.createElement('div') as HTMLElement;
@@ -17,7 +15,7 @@ export const createMyNotesPage = () : HTMLElement => {
   myNotesBlock.append(creatingNoteBlock);
   allNotesBlock.innerHTML = `<div class="noteslist-descr">
   <div class="noteslist-title">
-  <svg width="16" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" class="bw6WD8MQ3TTlEeqgodH_ _N6H2KQc4xYPH9Pihm46 _YsJxV6Ae_qpZgKyWssN"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.798 0h10.5a2 2 0 012 2v10.497h-4a.75.75 0 00-.75.75v4.749h-7.75a2 2 0 01-2-2V2a2 2 0 012-2zm8.445 5.5a.75.75 0 000-1.5H4.757a.75.75 0 100 1.5h6.486zm.75 3.502a.75.75 0 01-.75.75H4.757a.75.75 0 110-1.5h6.486a.75.75 0 01.75.75zm-5.236 4.99a.75.75 0 000-1.5h-2a.75.75 0 000 1.5h2z" fill="currentColor"></path><path d="M12.048 13.997h2.588l-2.528 3.231-.06.073v-3.304z" fill="currentColor"></path></svg> Notes</div>
+  <svg width="16" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.798 0h10.5a2 2 0 012 2v10.497h-4a.75.75 0 00-.75.75v4.749h-7.75a2 2 0 01-2-2V2a2 2 0 012-2zm8.445 5.5a.75.75 0 000-1.5H4.757a.75.75 0 100 1.5h6.486zm.75 3.502a.75.75 0 01-.75.75H4.757a.75.75 0 110-1.5h6.486a.75.75 0 01.75.75zm-5.236 4.99a.75.75 0 000-1.5h-2a.75.75 0 000 1.5h2z" fill="currentColor"></path><path d="M12.048 13.997h2.588l-2.528 3.231-.06.073v-3.304z" fill="currentColor"></path></svg> Notes</div>
   <button class="noteslist-add-note button">Add New Note</button>
   <div class="noteslist-info">
     <span class="count-noteslist-container"></span>
@@ -87,8 +85,6 @@ export const createMyNotesPage = () : HTMLElement => {
 <button id="justifyFull" class="submit-button">Save</button>`
 
   myNotesBtn.addEventListener('click', ()=> {
-    //mainContainerHeader.style.display = 'none';
-    //mainContainerMain.style.display = 'none';
     mainContainer.prepend(myNotesBlock)
     creatingNotesList(getALLNotes());
     editingNotes();

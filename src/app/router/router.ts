@@ -20,7 +20,7 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        //appendElement(pageView, createMyNotesPage() /*createMainBoard()*/);
+        //appendElement(pageView, createMainBoard());
         //pageView.style.marginTop = '80px';
         createMyNotesPage()
       },
@@ -38,8 +38,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        //appendElement(pageView, createWishboardPage())
-        createWishboardPage()
+        appendElement(pageView, createWishboardPage());
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',
