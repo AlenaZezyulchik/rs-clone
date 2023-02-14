@@ -5,6 +5,7 @@ import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from "../main/wishBoard/wishBoard";
+import { createMyNotesPage } from '../my-notes/my-notes-page'
 
 function viewBox(): void {
   const routes = {
@@ -19,8 +20,9 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createMainBoard());
+        //appendElement(pageView, createMainBoard());
         //pageView.style.marginTop = '80px';
+        createMyNotesPage()
       },
       title: 'My Notes',
       description: 'This is the note page',
@@ -36,7 +38,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createWishboardPage())
+        appendElement(pageView, createWishboardPage());
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',
