@@ -24,9 +24,7 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        //appendElement(pageView, createMainBoard());
-        //pageView.style.marginTop = '80px';
-        createMyNotesPage()
+        return createMyNotesPage();
       },
       title: 'My Notes',
       description: 'This is the note page',
@@ -70,7 +68,12 @@ function viewBox(): void {
       description: 'Page not found',
     },
   };
-  let lang = localStorage.getItem('lang') as LanguageType;
+  let lang: LanguageType;
+  if (localStorage.getItem('lang')) {
+  lang = localStorage.getItem('lang') as LanguageType;
+  } else {
+    lang = DEFAULT_LANGUAGE as LanguageType;
+  }
   navTranslate(lang);
 
   const locationHandler = async () => {
