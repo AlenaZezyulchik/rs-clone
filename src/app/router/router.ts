@@ -5,6 +5,10 @@ import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from "../main/wishBoard/wishBoard";
+import { navTranslate } from '../navigation/translateNav';
+
+const DEFAULT_LANGUAGE = "en";
+export type LanguageType = "en" | "ru";
 
 function viewBox(): void {
   const routes = {
@@ -64,6 +68,8 @@ function viewBox(): void {
       description: 'Page not found',
     },
   };
+  let lang = localStorage.getItem('lang') as LanguageType;
+  navTranslate(lang);
 
   const locationHandler = async () => {
     var location = window.location.hash.replace('#', '');

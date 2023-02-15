@@ -1,75 +1,11 @@
+import { LanguageType } from '../../router/router';
 import DomElements from '../../types/types';
 import { addClasslist, appendElement, createHtmlElement } from '../../variables/dom-elements';
 import pageView from '../../variables/dom-variables';
+import { affirmations } from '../mainBoard/quotes';
+import { IMainDataType, mainData } from '../mainBoard/mainBoardData';
 
-const mainData = [
-  {
-    screen: "https://img.freepik.com/premium-photo/young-female-student-making-notes-in-copybook-while-looking-through-online-data_274679-38256.jpg",
-    title: "Write a note",
-    description: "Write notes and save all important information along with a shared app",
-  },
-  {
-    screen: "https://imageio.forbes.com/specials-images/dam/imageserve/1092571024/960x0.jpg?format=jpg&width=960",
-    title: "Create a to-do list",
-    description: "Create a to-do list, a shopping list and you will never forget about the important",
-  },
-  {
-    screen: "https://zannakeithley.com/wp-content/uploads/2022/03/Vision-Board-2-min-576x1024.png",
-    title: "Create my wish board",
-    description: "Dream, visualize and create a wish board according to your goals",
-  },
-  {
-    screen: "https://i.pinimg.com/474x/a3/c6/18/a3c6185a9c02b4a5010e16f4b8c4048b.jpg",
-    title: "listen to music",
-    description: "Choose and listen to your favorite tracks with the Evernote app",
-  }
-];
-
-const affirmations = [
- {
-  en: "I am thankful for all of those who said NO to me. It’s because of them I’m doing it myself (Albert Einstein)",
-  ru: "Я благодарен всем, кто сказал мне «нет». Благодаря им я делаю все сам (Альберт Эйнштейн)"
- },
- {
-  en: "The best revenge is massive success (Frank Sinatra)",
-  ru: "Лучшая месть — это грандиозный успех (Фрэнк Синатра)"
- },
- {
-  en: "In order to succeed, we must first believe that we can (Nikos Kazantzakis)",
-  ru: "Для того, чтобы преуспеть, мы первым делом должны верить, что мы можем (Никос Казантзакис)"
- },
- {
-  en: "Only I can change my life. No one can do it for me (Carol Burnett)",
-  ru: "Только я могу изменить свою жизнь. Никто не может сделать это за меня (Кэрол Бернетт)"
- },
- {
-  en: "Motivation will almost always beat mere talent (Norman R. Augustine)",
-  ru: "Мотивация почти всегда побеждает просто талант (Норман Р. Августин)"
- }, 
- {
-  en: "In the middle of difficulty lies opportunity (Albert Einstein)",
-  ru: "В центре проблемы находится возможность (Альберт Эйнштейн)"
- }, 
- {
-  en: "Success doesn't come to you. You go to it (Marva Collins)",
-  ru: "Успех не приходит к вам. Это вы идете к нему (Марва Коллинз)"
- }, 
- {
-  en: "Genius is one percent inspiration, and ninety-nine percent perspiration (Thomas Edison)",
-  ru: "Гений — это 1% вдохновения и 99% пота (Томас Эдисон)"
- }, 
- {
-  en: "A pessimist sees the difficulty in every opportunity. An optimist sees the opportunity in every difficulty (Winston Churchill)",
-  ru: "Пессимист видит трудность в каждой возможности. Оптимист видит возможность в каждой трудности (Уинстон Черчилль)"
- }, 
- {
-  en: "The people who are crazy enough to think they can change the world are the ones who do (Steve Jobs)",
-  ru: "Люди, которым хватает безрассудства думать, что они могут изменить мир — и есть те, кто его меняют (Стив Джобс)"
- }
-
-];
-
-function getRandomNum(min: number, max:number) {
+export function getRandomNum(min: number, max:number) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -89,8 +25,8 @@ function createMainBoard() {
   addClasslist(quoteContainer, 'quote__container');
 
   setInterval(function() {
-    let bgNum = getRandomNum(0, 9);
-    quoteContainer.innerText = `${affirmations[bgNum].en}`;
+    let lang = localStorage.getItem('lang') as LanguageType;
+    getQuote(lang);
   }, 5000);
 
   appendElement(main, mainBoard);
@@ -108,16 +44,51 @@ function createMainBoard() {
     boardImage.style.backgroundPosition = "center";
   
     const boardDescription: DomElements = <HTMLDivElement>createHtmlElement('div');
-    boardDescription.innerText = `${item.description}`;
+    addClasslist(boardDescription, 'board__description');
+    addClasslist(boardDescription, `${item.class}`);
 
     appendElement(boardImageContainer, boardItem);
     appendElement(boardItem, boardImage);
     appendElement(boardItem, boardDescription);
-
+    getBoardDescription(boardDescription, item);
   });
 
   return main;
-}
+};
+
+export function getQuote (lang: LanguageType) {
+  const quoteContainer = document.querySelector('.quote__container') as HTMLDivElement;
+  let bgNum = getRandomNum(0, 9);
+  if (quoteContainer) {
+    quoteContainer.innerText = (lang === 'en') ? `${affirmations[bgNum].en}` : (lang === 'ru') ? `${affirmations[bgNum].ru}` : "";
+  }
+};
+
+export function getBoardDescription (boardDescription: HTMLElement, item: IMainDataType) {
+  let lang = localStorage.getItem('lang') as LanguageType;
+  if (boardDescription) {
+    if (lang == 'en') {
+      boardDescription.innerText = `${item.descriptionEn}`;
+    } 
+    if (lang == 'ru') {
+      boardDescription.innerText = `${item.descriptionRu}`;
+    }
+  }
+};
+
+export function translateDescription (lang: LanguageType) {
+  const board = document.querySelector('.board__container')  as HTMLDivElement;
+  const boardDescriptionNote = document.querySelector('.board__description_note')  as HTMLDivElement;
+  const boardDescriptionTodo = document.querySelector('.board__description_todo')  as HTMLDivElement;
+  const boardDescriptionBoard = document.querySelector('.board__description_board')  as HTMLDivElement;
+  const boardDescriptionMusic = document.querySelector('.board__description_music')  as HTMLDivElement;
+  if (board) {
+    boardDescriptionNote.innerText = (lang == 'en') ? `${mainData[0].descriptionEn}` : (lang == 'ru') ? `${mainData[0].descriptionRu}` : '';
+    boardDescriptionTodo.innerText = (lang == 'en') ? `${mainData[1].descriptionEn}` : (lang == 'ru') ? `${mainData[1].descriptionRu}` : '';
+    boardDescriptionBoard.innerText = (lang == 'en') ? `${mainData[2].descriptionEn}` : (lang == 'ru') ? `${mainData[2].descriptionRu}` : '';
+    boardDescriptionMusic.innerText = (lang == 'en') ? `${mainData[3].descriptionEn}` : (lang == 'ru') ? `${mainData[3].descriptionRu}` : '';
+  }
+};
 
 export default createMainBoard;
 

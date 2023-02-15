@@ -1,4 +1,5 @@
 import dragula from "dragula";
+import { LanguageType } from "../../router/router";
 import { appendElement } from "../../variables/dom-elements";
 import pageView from "../../variables/dom-variables";
 import createFooter from "../footer/footer";
@@ -6,7 +7,7 @@ import createHeader from "../header/header";
 
 
 const createInput = (): any => {
-  return `<input class="wish-board__input" type="text" placeholder="search for..." name="key" autofocus="">
+  return `<input class="wish-board__input" type="text" placeholder="search by topic..." name="key">
   <svg class="magnifying-glass" xmlns="http://www.w3.org/2000/svg" fill="#8f8f8f" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg>`
 };
 
@@ -41,6 +42,8 @@ const createWishBoard = () => {
     if (event.key === 'Enter')
         loadImg();
   });
+  let lang = localStorage.getItem('lang') as LanguageType;
+  translateWishBoardPlaceholder(lang);
 return wishBoardContainer;
 };
 
@@ -88,7 +91,19 @@ const loadImg = async () => {
     image.style.backgroundRepeat = "no-repeat";
     wishBoardImages.append(image);
   });
-  };
+};
+
+export const translateWishBoardPlaceholder = (lang: LanguageType) => {
+  const placeholder = document.querySelector('.wish-board__input') as HTMLInputElement;
+  if (placeholder) {
+    if (lang === 'en') {
+      placeholder.placeholder = 'search by topic...';
+    }
+    if (lang === 'ru') {
+      placeholder.placeholder = 'искать по теме...';
+    }
+  }
+};
 
 window.onload = function() {
   dragula([
@@ -115,6 +130,7 @@ window.onload = function() {
     slideFactorX: 0,
     slideFactorY: 0,
   }
-}
+};
+
 
 export default createWishboardPage;
