@@ -6,6 +6,10 @@ import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from "../main/wishBoard/wishBoard";
 import { createMyNotesPage } from '../my-notes/my-notes-page'
+import { navTranslate } from '../navigation/translateNav';
+
+const DEFAULT_LANGUAGE = "en";
+export type LanguageType = "en" | "ru";
 
 function viewBox(): void {
   const routes = {
@@ -20,9 +24,7 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        //appendElement(pageView, createMainBoard());
-        //pageView.style.marginTop = '80px';
-        createMyNotesPage()
+        return createMyNotesPage();
       },
       title: 'My Notes',
       description: 'This is the note page',
@@ -38,7 +40,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createWishboardPage());
+        createWishboardPage();
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',
@@ -66,6 +68,13 @@ function viewBox(): void {
       description: 'Page not found',
     },
   };
+  let lang: LanguageType;
+  if (localStorage.getItem('lang')) {
+  lang = localStorage.getItem('lang') as LanguageType;
+  } else {
+    lang = DEFAULT_LANGUAGE as LanguageType;
+  }
+  navTranslate(lang);
 
   const locationHandler = async () => {
     var location = window.location.hash.replace('#', '');
