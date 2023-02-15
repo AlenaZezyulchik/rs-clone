@@ -5,6 +5,7 @@ import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from "../main/wishBoard/wishBoard";
+import { createMyNotesPage } from '../my-notes/my-notes-page'
 import { navTranslate } from '../navigation/translateNav';
 
 const DEFAULT_LANGUAGE = "en";
@@ -23,8 +24,9 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createMainBoard());
+        //appendElement(pageView, createMainBoard());
         //pageView.style.marginTop = '80px';
+        createMyNotesPage()
       },
       title: 'My Notes',
       description: 'This is the note page',
