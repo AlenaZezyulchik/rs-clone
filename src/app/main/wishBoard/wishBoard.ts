@@ -44,6 +44,7 @@ const createWishBoard = () => {
   });
   let lang = localStorage.getItem('lang') as LanguageType;
   translateWishBoardPlaceholder(lang);
+  dragAndDrop();
 return wishBoardContainer;
 };
 
@@ -105,7 +106,7 @@ export const translateWishBoardPlaceholder = (lang: LanguageType) => {
   }
 };
 
-window.onload = function() {
+function dragAndDrop() {
   dragula([
     document.querySelector(".wish-board__droppable") as HTMLDivElement,
     document.querySelector(".wish-board__images") as HTMLDivElement,

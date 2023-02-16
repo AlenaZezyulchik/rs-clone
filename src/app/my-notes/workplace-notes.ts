@@ -78,8 +78,7 @@ export const chooseNote = () => {
     elem.addEventListener('click', ()=> {
       const textNoteFeald = document.querySelector('.text-note') as HTMLElement;
       textNoteFeald.innerHTML = `${arr[index].text}`;
-      textNoteFeald.id = `${arr[index].id}`
-      console.log(textNoteFeald.id)
+      textNoteFeald.id = `${arr[index].id}`;
     });
   });
 };

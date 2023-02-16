@@ -42,7 +42,7 @@ function viewBox(): void {
         pageView.innerHTML = '';
         createWishboardPage();
       },
-      title: 'To-Do List',
+      title: 'Wish board',
       description: 'This is the wishboard page',
     },
     mystudy: {
