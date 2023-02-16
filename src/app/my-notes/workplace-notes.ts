@@ -1,43 +1,42 @@
-
 export interface NoteInfo {
   text: string;
   id: number;
   date: number;
-}
+};
 
 export const getALLNotes = ()=> {
   const notesArray: string = localStorage.getItem('note-array') || '[]';
   const notes:Array <NoteInfo> = JSON.parse(notesArray);
   return notes;
-}
+};
 
 export const creatingNotesList = (arr: Array<NoteInfo>) => {
   const notesListcontainer = document.querySelector('.noteslist') as HTMLElement;
   notesListcontainer.innerHTML = ''; 
   arr.forEach(elem => {
     const notecontainer = document.createElement('div') as HTMLElement;
-    notecontainer.classList.add('note-container')
-    notesListcontainer.append(notecontainer)
+    notecontainer.classList.add('note-container');
+    notesListcontainer.append(notecontainer);
     notecontainer.innerHTML = `<div class="noteslist-title-delete"><div class="noteslist-notename">${elem.text}</div>
     <div class="noteslist-delete"></div></div>
-    <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`
-    notecontainer.id = `${elem.id}`
-  })
-}
+    <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
+    notecontainer.id = `${elem.id}`;
+  });
+};
 
 const addToAllNotes = (obj: NoteInfo)=> {
   const notesArray: string = localStorage.getItem('note-array') || '[]';
   const notes:Array <NoteInfo> = JSON.parse(notesArray);
   notes.push(obj);
   localStorage.setItem('note-array', JSON.stringify(notes))
-}
+};
 
 const deleeteFromNotes = (obj: NoteInfo) => {
   const notesArray: string = localStorage.getItem('note-array') || '[]';
   const notes:Array <NoteInfo> = JSON.parse(notesArray);
   const newNotes = notes.filter(elem => elem.id != obj.id);
   localStorage.setItem('note-array', JSON.stringify(newNotes))
-}
+};
 
 export const setNotesList = () => {
   const saveButton = document.querySelector('.submit-button') as HTMLButtonElement;
@@ -46,12 +45,12 @@ export const setNotesList = () => {
     const textNoteElem = document.querySelector('.text-note') as HTMLElement;
     const textNoteInnerHTML = textNoteElem !== null ? textNoteElem.innerHTML : ' ';
     const textNoteID = Math.floor(Math.random()*1000000);
-    const textNoteDate = new Date().getTime()
+    const textNoteDate = new Date().getTime();
     let NoteObj: NoteInfo = {
       text: textNoteInnerHTML,
       id: textNoteID,
       date: textNoteDate,
-    }
+    };
     if (Number(textNoteFeald.id)) {
       const arr = getALLNotes();
       let newArr = arr.map(elem => {
@@ -60,7 +59,7 @@ export const setNotesList = () => {
           elem.date = new Date().getTime();
         }
         return elem;
-      })
+      });
       localStorage.setItem('note-array', JSON.stringify(newArr));
     } else {
       addToAllNotes(NoteObj);
@@ -69,8 +68,8 @@ export const setNotesList = () => {
     chooseNote();
     deleteSomeNote();
     countNotes();
-  })
-}
+  });
+};
 
 export const chooseNote = () => {
   const arr = getALLNotes();
@@ -80,9 +79,10 @@ export const chooseNote = () => {
       const textNoteFeald = document.querySelector('.text-note') as HTMLElement;
       textNoteFeald.innerHTML = `${arr[index].text}`;
       textNoteFeald.id = `${arr[index].id}`
-    })
-  })
-}
+      console.log(textNoteFeald.id)
+    });
+  });
+};
 
 export const createNewNote = () => {
   const newNoteButton = document.querySelector('.noteslist-add-note') as HTMLButtonElement;
@@ -91,8 +91,8 @@ export const createNewNote = () => {
     const textNoteFeald = document.querySelector('.text-note') as HTMLElement;
     textNoteFeald.id = `${newNoteId}`;
     textNoteFeald.innerHTML = ``;
-  })
-}
+  });
+};
 
 export const deleteSomeNote = () => {
   const deleteNoteButtons = document.querySelectorAll('.noteslist-delete') as NodeListOf<HTMLElement>;
@@ -106,9 +106,9 @@ export const deleteSomeNote = () => {
       chooseNote();
       countNotes();
       e.stopPropagation();
-    })
-  })
-}
+    });
+  });
+};
 
 export const sortNotes = () => {
   const sortButton = document.querySelector('.noteslist-sort') as HTMLButtonElement;
@@ -126,15 +126,15 @@ export const sortNotes = () => {
       creatingNotesList(getALLNotes());
       deleteSomeNote();
       chooseNote();
-  })
-}
+  });
+};
 
 export const countNotes = () => {
   const countContainer = document.querySelector('.count-noteslist-container') as HTMLButtonElement;
   const arr = getALLNotes();
   if (arr.length > 1) {
-    countContainer.innerHTML = `${arr.length} Notes`
+    countContainer.innerHTML = `${arr.length} Notes`;
   } else {
-    countContainer.innerHTML = `${arr.length} Note`
+    countContainer.innerHTML = `${arr.length} Note`;
   }
-}
+};

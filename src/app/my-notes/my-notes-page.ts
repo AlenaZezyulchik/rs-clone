@@ -2,7 +2,6 @@ import { setNotesList, getALLNotes, NoteInfo, creatingNotesList, chooseNote, cre
 
 export const createMyNotesPage = () : HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
-  const myNotesBtn = document.querySelector('.my-notes') as HTMLElement;
   const myNotesBlock = document.createElement('div') as HTMLElement;
   const allNotesBlock = document.createElement('div') as HTMLElement;
   const creatingNoteBlock = document.createElement('div') as HTMLElement;
@@ -21,8 +20,8 @@ export const createMyNotesPage = () : HTMLElement => {
     <span class="count-noteslist-container"></span>
     <svg class="noteslist-sort" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.183 4.625a.625.625 0 00-1.25 0V17.87L5.067 16a.625.625 0 00-.884 0 .62.62 0 000 .88l2.933 2.94c.244.244.64.244.884 0l2.933-2.94a.62.62 0 000-.88.625.625 0 00-.884 0l-1.866 1.87V4.625zM11.625 5a.625.625 0 100 1.25h8.75a.625.625 0 100-1.25h-8.75zM11 9.375c0-.345.28-.625.625-.625h6.25a.625.625 0 110 1.25h-6.25A.625.625 0 0111 9.375zM11.625 12.5a.625.625 0 100 1.25h3.75a.625.625 0 100-1.25h-3.75z" fill="white"></path></svg>
   </div>
-</div>
-<div class="noteslist"></div>`;
+  </div>
+  <div class="noteslist"></div>`;
   creatingNoteBlock.innerHTML = `<div class="buttons-container">
   <button id="bold" class="click-button button">
     <i class="fa-solid fa-bold"></i>
@@ -80,24 +79,22 @@ export const createMyNotesPage = () : HTMLElement => {
     <input type="color" id="backColor" class="change-button color-button" />
     <label for="backColor">Highlight Color</label>
   </div>
-</div>
-<div class="text-note" id="0" contenteditable="true"> Note 1 - ${new Date ().toLocaleString()} </div>
-<button id="justifyFull" class="submit-button">Save</button>`
+  </div>
+  <div class="text-note" id="0" contenteditable="true"> Note 1 - ${new Date ().toLocaleString()} </div>
+  <button id="justifyFull" class="submit-button">Save</button>`
+  mainContainer.append(myNotesBlock);
 
-  myNotesBtn.addEventListener('click', ()=> {
-    mainContainer.prepend(myNotesBlock)
-    creatingNotesList(getALLNotes());
-    editingNotes();
-    getALLNotes();
-    setNotesList();
-    chooseNote();
-    createNewNote();
-    deleteSomeNote();
-    sortNotes();
-    countNotes();
-  })
+  creatingNotesList(getALLNotes());
+  editingNotes();
+  getALLNotes();
+  setNotesList();
+  chooseNote();
+  createNewNote();
+  deleteSomeNote();
+  sortNotes();
+  countNotes();
   return myNotesBlock;
-}
+};
 
 function editingNotes () {
   let clickButtons = document.querySelectorAll(".click-button") as NodeListOf<HTMLButtonElement>;
@@ -124,4 +121,4 @@ function editingNotes () {
     document.execCommand('styleWithCSS', false);
     styleText(colorButton.id, false, colorButton.value);
   });
-}
+};
