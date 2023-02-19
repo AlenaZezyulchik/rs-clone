@@ -10,14 +10,12 @@
   flex: 1;
   transition: 0.7s;
   margin-top: -100px;
- // margin-left: 260px;
   width: calc(100vw - 270px);
   height: calc(100vh - 224px);
-  background-color: $board-bg;
 }
 
 .wish-board__canvas {
-  background: url(https://phonoteka.org/uploads/posts/2021-04/thumbs/1619144855_13-phonoteka_org-p-belie-doski-fon-17.jpg);
+  background: url(../assets/img/4.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -60,7 +58,6 @@
 
 .wish-board__input {
   border: transparent;
-  background: $board-bg;
   width: 100%;
   outline: none;
 }
@@ -88,29 +85,6 @@
   flex-wrap: wrap;
   overflow-y: scroll;
 }
-
-/*.gu-mirror {   //элемент который находится в движении
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
-}
-.gu-hide { //скрыть перенесенный элемент
-  display: none !important;
-}
-.gu-unselectable { //стили для body
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-.gu-transit { //контейнер который находится под переносимым элементом
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-}*/
 
 @media (max-width: 1000px) {
   .wish-board__image {

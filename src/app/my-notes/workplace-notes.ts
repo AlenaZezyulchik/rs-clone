@@ -1,3 +1,5 @@
+import { LanguageType } from "../router/router";
+
 export interface NoteInfo {
   text: string;
   id: number;
@@ -131,9 +133,39 @@ export const sortNotes = () => {
 export const countNotes = () => {
   const countContainer = document.querySelector('.count-noteslist-container') as HTMLButtonElement;
   const arr = getALLNotes();
-  if (arr.length > 1) {
-    countContainer.innerHTML = `${arr.length} Notes`;
-  } else {
-    countContainer.innerHTML = `${arr.length} Note`;
+  let lang = localStorage.getItem('lang') as LanguageType;
+  const length = (String(arr.length));
+  const lastNumber = Number(length.at(-1));
+  if(countContainer) {
+    if(lang === "en") {
+      countContainer.innerHTML = (arr.length === 1) ? `${arr.length} Note` : `${arr.length} Notes`;
+    }
+    if(lang === "ru") {
+      if(arr.length < 5) {
+        countContainer.innerHTML = (lastNumber === 0) ? `${arr.length}  Заметок` : (lastNumber === 1) ? `${arr.length}  Заметка` : (lastNumber > 1 || lastNumber < 5) ? `${arr.length} Заметки`: "";
+      }
+      if(arr.length > 4 && arr.length < 20) {
+        countContainer.innerHTML = `${arr.length} Заметок`;
+      }
+      if(arr.length >= 20) {
+        countContainer.innerHTML = (lastNumber === 1) ? `${arr.length}  Заметка` : (lastNumber > 1 && lastNumber < 5) ? `${arr.length} Заметки`: (lastNumber > 4 && lastNumber < 10 || lastNumber === 0) ? `${arr.length} Заметок` : "";
+      }
+    }
+  }
+};
+
+export const translateNotes = (lang: LanguageType) => {
+  const notesContainer = document.querySelector('.my-notes-container') as HTMLDivElement;
+  if(notesContainer) {
+    const spanNotes = document.querySelector('.noteslist-title span') as HTMLSpanElement;
+    const addButton = document.querySelector('.noteslist-add-note') as HTMLButtonElement;
+    const saveButton = document.querySelector('.submit-button') as HTMLButtonElement;
+    const labelFore = document.querySelector('label[for=foreColor]') as HTMLLabelElement;
+    const labelBack = document.querySelector('label[for=backColor]') as HTMLLabelElement;
+    spanNotes.innerHTML = (lang === 'en') ? 'Notes' : (lang === 'ru') ? 'Заметки' : '';
+    addButton.innerHTML = (lang === 'en') ? 'Add New Note' : (lang === 'ru') ? 'Добавить новую заметку' : '';
+    saveButton.innerHTML = (lang === 'en') ? 'Save' : (lang === 'ru') ? 'Сохранить' : '';
+    labelFore.innerHTML = (lang === 'en') ? 'Font Color' : (lang === 'ru') ? 'Цвет шрифта' : '';
+    labelBack.innerHTML = (lang === 'en') ? 'Highlight Color' : (lang === 'ru') ? 'Цвет фона' : '';
   }
 };
