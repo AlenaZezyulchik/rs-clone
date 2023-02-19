@@ -4,6 +4,7 @@ import { addClasslist, appendElement, createHtmlElement } from '../../variables/
 import pageView from '../../variables/dom-variables';
 import { affirmations } from '../mainBoard/quotes';
 import { IMainDataType, mainData } from '../mainBoard/mainBoardData';
+import { changeThemeBoard } from '../../themes/themes';
 
 export function getRandomNum(min: number, max:number) {
   min = Math.ceil(min);
@@ -36,6 +37,7 @@ function createMainBoard() {
   mainData.forEach((item) => {
     const boardItem: DomElements = <HTMLDivElement>createHtmlElement('div');
     addClasslist(boardItem, 'board__item');
+    addClasslist(boardItem, `${item.class}`);
 
     const boardImage: DomElements = <HTMLDivElement>createHtmlElement('div');
     addClasslist(boardImage, 'board__image');
@@ -45,14 +47,18 @@ function createMainBoard() {
   
     const boardDescription: DomElements = <HTMLDivElement>createHtmlElement('div');
     addClasslist(boardDescription, 'board__description');
-    addClasslist(boardDescription, `${item.class}`);
 
     appendElement(boardImageContainer, boardItem);
     appendElement(boardItem, boardImage);
     appendElement(boardItem, boardDescription);
     getBoardDescription(boardDescription, item);
-  });
 
+  });
+    const boardNote = document.querySelector('.board__note') as HTMLDivElement;
+    const boardTodo = document.querySelector('.board__todo') as HTMLDivElement;
+    const boardWishBoard = document.querySelector('.board__board') as HTMLDivElement;
+    const boardMusic = document.querySelector('.board__music') as HTMLDivElement;
+    changeThemeBoard(boardNote, boardTodo, boardWishBoard, boardMusic);
   return main;
 };
 
@@ -78,10 +84,10 @@ export function getBoardDescription (boardDescription: HTMLElement, item: IMainD
 
 export function translateDescription (lang: LanguageType) {
   const board = document.querySelector('.board__container')  as HTMLDivElement;
-  const boardDescriptionNote = document.querySelector('.board__description_note')  as HTMLDivElement;
-  const boardDescriptionTodo = document.querySelector('.board__description_todo')  as HTMLDivElement;
-  const boardDescriptionBoard = document.querySelector('.board__description_board')  as HTMLDivElement;
-  const boardDescriptionMusic = document.querySelector('.board__description_music')  as HTMLDivElement;
+  const boardDescriptionNote = document.querySelector('.board__note .board__description')  as HTMLDivElement;
+  const boardDescriptionTodo = document.querySelector('.board__todo .board__description')  as HTMLDivElement;
+  const boardDescriptionBoard = document.querySelector('.board__board .board__description')  as HTMLDivElement;
+  const boardDescriptionMusic = document.querySelector('.board__music .board__description')  as HTMLDivElement;
   if (board) {
     boardDescriptionNote.innerText = (lang == 'en') ? `${mainData[0].descriptionEn}` : (lang == 'ru') ? `${mainData[0].descriptionRu}` : '';
     boardDescriptionTodo.innerText = (lang == 'en') ? `${mainData[1].descriptionEn}` : (lang == 'ru') ? `${mainData[1].descriptionRu}` : '';

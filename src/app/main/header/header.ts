@@ -4,6 +4,8 @@ import { addClasslist, appendElement, createHtmlElement } from '../../variables/
 import { getQuote, translateDescription } from '../mainBoard/mainBoard';
 import { navTranslate } from '../../navigation/translateNav';
 import { translateWishBoardPlaceholder } from '../wishBoard/wishBoard';
+import { translateNotes } from '../../my-notes/workplace-notes';
+import { changeMainTextColor, changeThemeBoard, changeThemeNav, changeThemeFooter, changeThemeHeader, changeThemeLang, changeThemeNotesContainer, changeThemeSelect, changeThemeWishBoardContainer } from '../../themes/themes';
 
 function createHeader() {
 
@@ -48,7 +50,18 @@ function createHeader() {
   const rightContainer: DomElements = <HTMLElement>createHtmlElement('div');
   addClasslist(rightContainer, 'header_right-container');
   appendElement(header, rightContainer);
+  setInterval(showTime, 1000);
+  showGreeting(greetSpanElem);
+  setPlaceholderUserName(greetInputElem);
+  createLangSelect(rightContainer);
+  createThemeSelect(rightContainer);
+  changeThemeHeader(header);
+  changeMainTextColor(greetInputElem);
+  greetInputElem.addEventListener('input', () => {setLocalStorName(greetInputElem)});
+  return header;
+};
 
+const createLangSelect = (rightContainer: HTMLElement) => {
   const langContainer = document.createElement('select') as HTMLSelectElement;
   addClasslist(langContainer, 'change-lang');
   appendElement(rightContainer, langContainer);
@@ -71,32 +84,81 @@ function createHeader() {
   }
   appendElement(langContainer, optionRu);
 
-  const date = new Date();
-  let hours: any = date.getHours();
-  let min;
-  let sec;
-
-  function showTime() {
-    let lang = localStorage.getItem('lang')  as LanguageType;
-    const date = new Date();
-    hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-    min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    sec = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-    timeElem.textContent = `${hours}:${min}:${sec}`;
-    showDate(lang);
-  };
-  setInterval(showTime, 1000);
-  showGreeting(greetSpanElem);
-  setPlaceholderUserName(greetInputElem);
-  greetInputElem.addEventListener('input', () => {setLocalStorName(greetInputElem)});
- 
   langContainer.addEventListener("change", ()=> {
     let selectedLang = langContainer.options[langContainer.selectedIndex].value;
     localStorage.setItem('lang', `${selectedLang}`);
     changeLanguage(selectedLang as LanguageType);
   });
-  
-  return header;
+  changeThemeLang(langContainer);
+};
+
+const createThemeSelect = (rightContainer: HTMLElement) => {
+  const themeSelect = document.createElement('select') as HTMLSelectElement;
+  themeSelect.classList.add('change_theme');
+  rightContainer.append(themeSelect);
+
+  const darkOption = document.createElement('option') as HTMLOptionElement;
+  darkOption.classList.add('dark_light')
+  darkOption.value = 'dark';
+  darkOption.innerHTML = '&#9789;';
+  if(localStorage.getItem('theme') == 'dark') {
+    darkOption.setAttribute('selected', '');
+  }
+
+  const lightOption = document.createElement('option') as HTMLOptionElement;
+  lightOption.classList.add("option_light")
+  lightOption.value = 'light';
+  lightOption.innerHTML = '&#9788;';
+  if(localStorage.getItem('theme') == 'light') {
+    lightOption.setAttribute('selected', '');
+  }
+
+  themeSelect.append(darkOption);
+  themeSelect.append(lightOption);
+
+  themeSelect.addEventListener("change", () => {
+    let selectedTheme = themeSelect.options[themeSelect.selectedIndex].value;
+    localStorage.setItem('theme', `${selectedTheme}`);
+    const header = document.querySelector('header') as HTMLElement;
+    const boardNote = document.querySelector('.board__note') as HTMLDivElement;
+    const boardTodo = document.querySelector('.board__todo') as HTMLDivElement;
+    const boardWishBoard = document.querySelector('.board__board') as HTMLDivElement;
+    const boardMusic = document.querySelector('.board__music') as HTMLDivElement;
+    const footer = document.querySelector('footer') as HTMLElement;
+    const langContainer = document.querySelector('.change-lang') as HTMLSelectElement;
+    const wishBoardContainer = document.querySelector('.wish-board__container') as HTMLDivElement;
+    const wishBoardInput = document.querySelector('.wish-board__input') as HTMLInputElement;
+    const myNotesContainer = document.querySelector('.my-notes-container') as HTMLDivElement;
+    const creatingNoteBlock = document.querySelector('.creating-note-container') as HTMLDivElement;
+    const textNote = document.querySelector('.text-note') as HTMLDivElement;
+    const notesList = document.querySelector('.noteslist') as HTMLDivElement;
+    const userName = document.querySelector('.user-name') as HTMLInputElement;
+    const footerItems = document.querySelectorAll('.developers a') as NodeListOf<HTMLElement>;
+    changeThemeNav();
+    changeThemeBoard(boardNote, boardTodo, boardWishBoard, boardMusic);
+    changeThemeHeader(header);
+    changeThemeFooter(footer, footerItems);
+    changeThemeLang(langContainer);
+    changeThemeSelect(themeSelect);
+    changeThemeWishBoardContainer(wishBoardContainer, wishBoardInput);
+    changeThemeNotesContainer (myNotesContainer, creatingNoteBlock, textNote, notesList);
+    changeMainTextColor(userName);
+  })
+  changeThemeSelect(themeSelect);
+  return themeSelect;
+}
+
+const showTime = () => {
+  const timeElem = document.querySelector(".time") as HTMLElement;
+  const date = new Date();
+  let lang = localStorage.getItem('lang')  as LanguageType;
+  let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+  let min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+  let sec = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+  if (timeElem) {
+    timeElem.textContent = `${hours}:${min}:${sec}`;
+  }
+  showDate(lang);
 };
 
 const showGreeting = (greetSpanElem: HTMLSpanElement) => {
@@ -167,6 +229,7 @@ const changeLanguage = (lang: LanguageType) => {
   translateDescription(lang);
   navTranslate(lang);
   translateWishBoardPlaceholder(lang);
+  translateNotes(lang);
 };
 
 export default createHeader;
