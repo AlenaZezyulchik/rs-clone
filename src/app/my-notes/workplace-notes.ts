@@ -30,13 +30,13 @@ const addToAllNotes = (obj: NoteInfo)=> {
   notes.push(obj);
   localStorage.setItem('note-array', JSON.stringify(notes))
 };
-
+/*
 const deleeteFromNotes = (obj: NoteInfo) => {
   const notesArray: string = localStorage.getItem('note-array') || '[]';
   const notes:Array <NoteInfo> = JSON.parse(notesArray);
   const newNotes = notes.filter(elem => elem.id != obj.id);
   localStorage.setItem('note-array', JSON.stringify(newNotes))
-};
+};*/
 
 export const setNotesList = () => {
   const saveButton = document.querySelector('.submit-button') as HTMLButtonElement;

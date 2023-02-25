@@ -1,0 +1,101 @@
+.my-todolist-container {
+  margin: 0 auto;
+  width: 80%;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.todo-container, .in-progress-container, .done-container {
+  width: 30%;
+  height: 30vw;
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 1%;
+  background-color: $board-bg;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} 
+
+.todolist-block-decor {
+  display:inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: $green-text;
+}
+
+.item-todolist-container {
+  border: 1px solid $main-text;
+  border-radius: 5px;
+  padding: 4px;
+  margin-bottom: 5px;
+}
+
+.todolist-button {
+  padding: 3px 0;
+  background-color: $btn-green;
+  border-radius: 4px;
+  border: 1px solid $btn-green;
+}
+
+.todolist-block-text {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.progeress-decor {
+  background-color: $btn-brown;
+}
+
+.done-decor {
+  background-color: $btn-blue;
+}
+
+.done-input, .todo-input, .inprogress-input {
+  display: none;
+}
+
+.todo-item-more-list {
+  display: none;
+  position: absolute;
+  width: 140px;
+  left: -120px;
+  background-color: $nav-bg;
+  z-index: 10;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.todo-item-more-button {
+  cursor: pointer;
+}
+
+.more-container {
+  position: relative;
+  &:hover .todo-item-more-list {
+    display: block;
+  }
+}
+
+.more-main-container {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  & .todo-item-more-list {
+    width: 190px;
+    left: -80px
+  }
+  
+}
+
+
+.active-todo-elem {
+  display: block;
+}
+
+.inactive-todo-elem {
+  display: none;
+}
