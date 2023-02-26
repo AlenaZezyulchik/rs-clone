@@ -38,6 +38,11 @@
   background-color: $btn-green;
   border-radius: 4px;
   border: 1px solid $btn-green;
+  cursor:pointer;
+  &:hover {
+    opacity: 0.8;
+    box-shadow: 5px 5px 15px rgba(10, 176, 110, 0.5);
+  }
 }
 
 .todolist-block-text {

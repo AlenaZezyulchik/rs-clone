@@ -2,6 +2,7 @@ import { todoItemInfo, creatingTodoItemsList, getALLTodoItems, addTodoAllItems, 
 
 export const createNewDoneNote = () => {
   const doneInput= document.querySelector('.done-input') as HTMLInputElement;
+  const doneButton = document.querySelector('.done-button') as HTMLButtonElement;
   doneInput.addEventListener('keyup', (event)=> {
     if (event.key === 'Enter') {
       const itemID = Math.floor(Math.random()*1000000);
@@ -12,6 +13,9 @@ export const createNewDoneNote = () => {
         date: itemDate,
         block: doneInput.id
       };
+      doneButton.classList.toggle('inactive-todo-elem');
+      doneInput.classList.toggle('active-todo-elem');
+      doneInput.value = '';
       addTodoAllItems(NoteObj);
       creatingTodoItemsList(getALLTodoItems())
       moveToNextBlock();
