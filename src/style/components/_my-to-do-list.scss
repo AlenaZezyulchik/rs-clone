@@ -31,6 +31,7 @@
   border-radius: 5px;
   padding: 4px;
   margin-bottom: 5px;
+  margin-right: 3px;
 }
 
 .todolist-button {
@@ -75,6 +76,9 @@
 
 .todo-item-more-button {
   cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .more-container {
@@ -96,6 +100,61 @@
   
 }
 
+.todo-input, .inprogress-input, .done-input {
+  height: 23px;
+  border-radius: 4px;
+  background-color: $board-bg;
+}
+
+.block-delete-button, .item-more-button {
+  padding: 3px 0;
+  cursor: pointer;
+  &:hover {
+    color: $green-text;
+    background-color: $board-bg;
+  }
+}
+
+.todolist-title-delete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.todolist-itemname {
+  width: 200px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  & * {
+    font-size: 17px;
+    font-weight: 700;
+  }
+}
+
+.todolist-items-list {
+  margin: 20px 0;
+  height: 30vw;
+  overflow-y: scroll;
+}
+
+.todolist-items-list::-webkit-scrollbar {
+  width: 12px;
+  cursor: pointer;
+}
+
+.todolist-items-list::-webkit-scrollbar-track {
+  background: $board-bg;
+  cursor: pointer;
+}
+
+.todolist-items-list::-webkit-scrollbar-thumb {
+  background-color: $btn-green;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
 .active-todo-elem {
   display: block;

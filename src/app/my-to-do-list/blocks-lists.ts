@@ -52,39 +52,39 @@ export const creatingTodoItemsList = (arr: Array<todoItemInfo>) => {
     itemcontainer.classList.add('item-todolist-container');
     if (elem.block ==='todo') {
       todoListcontainer.append(itemcontainer);
-      itemcontainer.innerHTML = `<div class="noteslist-title-delete"><div class="noteslist-notename">${elem.text}</div>
+      itemcontainer.innerHTML = `<div class="todolist-title-delete"><div class="todolist-itemname">${elem.text}</div>
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-in-Progress" id = "${elem.id}">Move to in Progress</div>
-      <div class = "todo-item-more-change-done" id = "${elem.id}">Move to Done</div>
-      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-in-Progress item-more-button" id = "${elem.id}">Move to in Progress</div>
+      <div class = "todo-item-more-change-done item-more-button" id = "${elem.id}">Move to Done</div>
+      <div class = "todo-item-more-delete item-more-button" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
       itemcontainer.id = `${elem.id}`;
     } else if (elem.block ==='inprogress') {
       inprogressListcontainer.append(itemcontainer);
-      itemcontainer.innerHTML = `<div class="noteslist-title-delete"><div class="noteslist-notename">${elem.text}</div>
+      itemcontainer.innerHTML = `<div class="todolist-title-delete"><div class="todolist-itemname">${elem.text}</div>
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo" id = "${elem.id}">Move to Todo</div>
-      <div class = "todo-item-more-change-done" id = "${elem.id}">Move to Done</div>
-      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo item-more-button" id = "${elem.id}">Move to Todo</div>
+      <div class = "todo-item-more-change-done item-more-button" id = "${elem.id}">Move to Done</div>
+      <div class = "todo-item-more-delete item-more-button" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
       itemcontainer.id = `${elem.id}`;
     } else {
       doneListcontainer.append(itemcontainer);
-      itemcontainer.innerHTML = `<div class="noteslist-title-delete"><div class="noteslist-notename">${elem.text}</div>
+      itemcontainer.innerHTML = `<div class="todolist-title-delete"><div class="todolist-itemname">${elem.text}</div>
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo" id = "${elem.id}">Move to Todo</div>
-      <div class = "todo-item-more-change-in-Progress" id = "${elem.id}">Move to in Progress</div>
-      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo item-more-button" id = "${elem.id}">Move to Todo</div>
+      <div class = "todo-item-more-change-in-Progress item-more-button" id = "${elem.id}">Move to in Progress</div>
+      <div class = "todo-item-more-delete item-more-button" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
