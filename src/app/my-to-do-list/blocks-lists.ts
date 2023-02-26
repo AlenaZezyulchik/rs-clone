@@ -56,9 +56,9 @@ export const creatingTodoItemsList = (arr: Array<todoItemInfo>) => {
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-to-do">Move to in Progress</div>
-      <div class = "todo-item-more-change-in-Progress">Move to Done</div>
-      <div class = "todo-item-more-delete">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-in-Progress" id = "${elem.id}">Move to in Progress</div>
+      <div class = "todo-item-more-change-done" id = "${elem.id}">Move to Done</div>
+      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
@@ -69,9 +69,9 @@ export const creatingTodoItemsList = (arr: Array<todoItemInfo>) => {
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-to-do">Move to Todo</div>
-      <div class = "todo-item-more-change-in-Progress">Move to Done</div>
-      <div class = "todo-item-more-delete">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo" id = "${elem.id}">Move to Todo</div>
+      <div class = "todo-item-more-change-done" id = "${elem.id}">Move to Done</div>
+      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
@@ -82,9 +82,9 @@ export const creatingTodoItemsList = (arr: Array<todoItemInfo>) => {
       <div class="more-container">
       <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       </svg>
-      <div class = "todo-item-more-list"><div class = "todo-item-more-change-to-do">Move to Todo</div>
-      <div class = "todo-item-more-change-in-Progress">Move to in Progress</div>
-      <div class = "todo-item-more-delete">Delete</div>
+      <div class = "todo-item-more-list"><div class = "todo-item-more-change-todo" id = "${elem.id}">Move to Todo</div>
+      <div class = "todo-item-more-change-in-Progress" id = "${elem.id}">Move to in Progress</div>
+      <div class = "todo-item-more-delete" id = "${elem.id}">Delete</div>
       </div></div>
       </div></div>
       <div class="noteslist-date">${new Date(elem.date).toLocaleString()}</div>`;
@@ -92,3 +92,63 @@ export const creatingTodoItemsList = (arr: Array<todoItemInfo>) => {
     }
   });
 };
+
+export const deleteSomeItem = () => {
+  const deleteItemButtons = document.querySelectorAll('.todo-item-more-delete') as NodeListOf<HTMLElement>;
+  deleteItemButtons.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      const arr = getALLTodoItems();
+      let index = arr.findIndex(item => item.id === +elem.id);
+      console.log(arr[index])
+      arr.splice(index, 1);
+      localStorage.setItem('todo-array', JSON.stringify(arr));
+      creatingTodoItemsList(getALLTodoItems());
+      deleteSomeItem();
+      moveToNextBlock();
+    });
+  });
+};
+
+export const moveToNextBlock = () => {
+  const moveToInprogress = document.querySelectorAll('.todo-item-more-change-in-Progress') as NodeListOf<HTMLElement>;
+  moveToInprogress.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      const arr = getALLTodoItems();
+      let index = arr.findIndex(item => item.id === +elem.id);
+      console.log(arr[index]);
+      arr[index].block = 'inprogress'
+      localStorage.setItem('todo-array', JSON.stringify(arr));
+      creatingTodoItemsList(getALLTodoItems());
+      deleteSomeItem();
+      moveToNextBlock();
+    });
+  });
+
+  const moveToDone = document.querySelectorAll('.todo-item-more-change-done') as NodeListOf<HTMLElement>;
+  moveToDone.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      const arr = getALLTodoItems();
+      let index = arr.findIndex(e => e.id === +elem.id);
+      console.log(arr[index]);
+      arr[index].block = 'done'
+      localStorage.setItem('todo-array', JSON.stringify(arr));
+      creatingTodoItemsList(getALLTodoItems());
+      deleteSomeItem();
+      moveToNextBlock()
+    });
+  });
+
+  const moveTodo = document.querySelectorAll('.todo-item-more-change-todo') as NodeListOf<HTMLElement>;
+  moveTodo.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      const arr = getALLTodoItems();
+      let index = arr.findIndex(e => e.id === +elem.id);
+      console.log(arr[index]);
+      arr[index].block = 'todo'
+      localStorage.setItem('todo-array', JSON.stringify(arr));
+      creatingTodoItemsList(getALLTodoItems());
+      deleteSomeItem();
+      moveToNextBlock()
+    });
+  });
+}

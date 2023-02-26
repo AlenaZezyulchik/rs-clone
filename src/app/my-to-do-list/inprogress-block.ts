@@ -1,4 +1,4 @@
-import { todoItemInfo, creatingTodoItemsList, getALLTodoItems, addTodoAllItems } from './blocks-lists';
+import { todoItemInfo, creatingTodoItemsList, getALLTodoItems, addTodoAllItems, moveToNextBlock, deleteSomeItem } from './blocks-lists';
 
 export const createNewInProgressNote = () => {
   const inprogressInput= document.querySelector('.inprogress-input') as HTMLInputElement;
@@ -13,7 +13,9 @@ export const createNewInProgressNote = () => {
         block: inprogressInput.id
       };
       addTodoAllItems(NoteObj);
-      creatingTodoItemsList(getALLTodoItems())
+      creatingTodoItemsList(getALLTodoItems());
+      moveToNextBlock();
+      deleteSomeItem();
     }
   })
 };

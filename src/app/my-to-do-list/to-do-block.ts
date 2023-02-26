@@ -1,4 +1,4 @@
-import { todoItemInfo, creatingTodoItemsList, getALLTodoItems, addTodoAllItems } from './blocks-lists';
+import { todoItemInfo, creatingTodoItemsList, getALLTodoItems, addTodoAllItems, moveToNextBlock, deleteSomeItem } from './blocks-lists';
 
 
 export const createNewNote = () => {
@@ -14,7 +14,9 @@ export const createNewNote = () => {
         block: todoInput.id
       };
       addTodoAllItems(NoteObj);
-      creatingTodoItemsList(getALLTodoItems())
+      creatingTodoItemsList(getALLTodoItems());
+      moveToNextBlock();
+      deleteSomeItem();
     }
   })
 };
