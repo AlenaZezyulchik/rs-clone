@@ -1,7 +1,7 @@
 import { createNewNote } from './to-do-block';
 import { createNewInProgressNote } from './inprogress-block';
 import { createNewDoneNote } from './done';
-import { showToDoInput, creatingTodoItemsList, getALLTodoItems, deleteSomeItem, moveToNextBlock } from './blocks-lists';
+import { showToDoInput, creatingTodoItemsList, getALLTodoItems, deleteSomeItem, moveToNextBlock, deleteAllBlockItems } from './blocks-lists';
 
 export const createMyToDoListPage = () : HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
@@ -25,7 +25,7 @@ export const createMyToDoListPage = () : HTMLElement => {
   <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
   </svg>
   <div class="todo-item-more-list">
-  <div class="todo-item-more-delete" id = "delete-block-todo">Delete all Todo items</div>
+  <div class="todo-block-more-delete block-delete-button" id = "todo">Delete all Todo items</div>
   </div></div> <br>
   <span class="todolist-block-text">This item hasn't been started</span></div>
   </div>
@@ -38,7 +38,7 @@ export const createMyToDoListPage = () : HTMLElement => {
   <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
   </svg>
   <div class="todo-item-more-list">
-  <div class="todo-item-more-delete" id = "delete-block-inprogress">Delete all In Progress items</div>
+  <div class="todo-block-more-delete block-delete-button" id = "inprogress">Delete all In Progress items</div>
   </div></div> <br>
   <span class="todolist-block-text">This is actively being worked on</span></div>
   </div>
@@ -51,7 +51,7 @@ export const createMyToDoListPage = () : HTMLElement => {
   <svg role="img" class="todo-item-more-button" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
   </svg>
   <div class="todo-item-more-list">
-  <div class="todo-item-more-delete" id = "delete-block-done">Delete all Done items</div>
+  <div class="todo-block-more-delete block-delete-button" id = "done">Delete all Done items</div>
   </div></div>  <br>
   <span class="todolist-block-text">This has been completed</span></div>
   </div>
@@ -65,8 +65,9 @@ export const createMyToDoListPage = () : HTMLElement => {
     createNewInProgressNote();
     createNewDoneNote();
     creatingTodoItemsList(getALLTodoItems());
-    moveToNextBlock()
-    deleteSomeItem()
+    moveToNextBlock();
+    deleteSomeItem();
+    deleteAllBlockItems()
   })
   return myToDoListContainer;
 }

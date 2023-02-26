@@ -148,7 +148,22 @@ export const moveToNextBlock = () => {
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
-      moveToNextBlock()
+      moveToNextBlock();
     });
   });
+}
+
+export const deleteAllBlockItems = () => {
+  const delAllBlockItemsButtons = document.querySelectorAll('.block-delete-button') as NodeListOf<HTMLElement>;
+  delAllBlockItemsButtons.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      const arr = getALLTodoItems();
+      let newArr = arr.filter((item) => item.block !== elem.id);
+      console.log(newArr)
+      localStorage.setItem('todo-array', JSON.stringify(newArr));
+      creatingTodoItemsList(getALLTodoItems());
+      deleteSomeItem();
+      moveToNextBlock();
+    });
+  })
 }
