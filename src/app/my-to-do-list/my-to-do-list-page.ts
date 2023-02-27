@@ -1,9 +1,16 @@
 import { createNewNote } from './to-do-block';
 import { createNewInProgressNote } from './inprogress-block';
 import { createNewDoneNote } from './done';
-import { showToDoInput, creatingTodoItemsList, getALLTodoItems, deleteSomeItem, moveToNextBlock, deleteAllBlockItems } from './blocks-lists';
+import {
+  showToDoInput,
+  creatingTodoItemsList,
+  getALLTodoItems,
+  deleteSomeItem,
+  moveToNextBlock,
+  deleteAllBlockItems,
+} from './blocks-lists';
 
-export const createMyToDoListPage = () : HTMLElement => {
+export const createMyToDoListPage = (): HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
   const myToDoListContainer = document.createElement('div') as HTMLElement;
   const myToDoBlock = document.createElement('div') as HTMLElement;
@@ -58,7 +65,7 @@ export const createMyToDoListPage = () : HTMLElement => {
   <div class="todolist-items-list done-items-list"></div>
   <input class="done-input" type="text" id="done" placeholder="Add your item">
   <button class="todolist-button done-button">Add item</button>`;
-  myToDoBtn.addEventListener('click', ()=> {
+  myToDoBtn.addEventListener('click', () => {
     mainContainer.prepend(myToDoListContainer);
     showToDoInput();
     createNewNote();
@@ -67,12 +74,7 @@ export const createMyToDoListPage = () : HTMLElement => {
     creatingTodoItemsList(getALLTodoItems());
     moveToNextBlock();
     deleteSomeItem();
-    deleteAllBlockItems()
-  })
+    deleteAllBlockItems();
+  });
   return myToDoListContainer;
-}
-
-
-
-
-
+};
