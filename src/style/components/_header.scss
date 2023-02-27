@@ -5,9 +5,8 @@
   width: 100%;
   height: 240px;
   padding-top: 20px;
-  background-image: url(../assets/img/0.jpg);
-  box-shadow: 12em 0 7em #15161a inset;
 }
+
 .burger {
   position: relative;
   min-width: 60px;
@@ -24,10 +23,21 @@
     transform: scale(1.2) rotate(180deg);
   }
 }
+
 .burger.active__burger {
   transition: 0.6s;
   transform: rotate(45deg);
 }
+
+.header_right-container {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .time__container {
   display: flex;
   flex-direction: column;
@@ -46,7 +56,7 @@
 
 .greeting__container {
   font-size: 20px;
-  padding: 10px 40px;
+  padding: 10px 20px;
 }
 
 .greeting {
@@ -81,7 +91,26 @@ input, textarea, select {
     width: 35px;
     height: 35px;
     color: $main-text;
-    background: $nav-bg;
+    //background: $nav-bg;
     border-radius: 90px;
     padding: 6px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+  .time,
+  .date {
+    font-size: 16px;
+  }
+
+  .user-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .time__container,
+  .greeting__container  {
+    padding: 2px;
+  }
 }

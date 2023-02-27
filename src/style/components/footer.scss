@@ -1,6 +1,5 @@
 .footer {
   padding: 20px;
-  background: url(../assets/img/2.jpg);
   box-shadow: 24em 0 7em #15161a inset;
 }
 
@@ -20,4 +19,13 @@
 .github__icon {
   width: 20px;
   border-radius: 50%;
+}
+
+@media (max-width: 400px) {
+  * {
+    font-size: 12px;
+  }
+  .github__icon {
+    display: none;
+  }
 }

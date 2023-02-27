@@ -4,7 +4,9 @@ type DomElements =
   | HTMLDivElement
   | HTMLButtonElement
   | HTMLInputElement
-  | HTMLSpanElement;
+  | HTMLSpanElement
+  | HTMLOptionElement
+  | HTMLSelectElement;
 
 export interface IValue {
   value: number;

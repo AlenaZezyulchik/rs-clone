@@ -1,10 +1,17 @@
-import createMainBoard from '../main/mainBoard/mainBoard';
 import createFooter from '../main/footer/footer';
 import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from '../main/wishBoard/wishBoard';
-import createMusicBox from '../music/music';
+import { createMyNotesPage } from '../my-notes/my-notes-page';
+import { navTranslate } from '../navigation/translateNav';
+import { createTestPage } from '../notes/notes';
+import { changeThemeNav } from '../themes/themes';
+
+const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_THEME = 'dark';
+export type LanguageType = 'en' | 'ru';
+export type ThemeType = 'dark' | 'light';
 
 function viewBox(): void {
   const routes = {
@@ -19,8 +26,7 @@ function viewBox(): void {
     mynotes: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createMainBoard());
-        //pageView.style.marginTop = '80px';
+        return createMyNotesPage();
       },
       title: 'My Notes',
       description: 'This is the note page',
@@ -38,12 +44,13 @@ function viewBox(): void {
         pageView.innerHTML = '';
         createWishboardPage();
       },
-      title: 'To-Do List',
+      title: 'Wish board',
       description: 'This is the wishboard page',
     },
     mystudy: {
       render() {
         pageView.innerHTML = '';
+        createTestPage();
       },
       title: 'To-Do List',
       description: 'This is the study page',
@@ -65,6 +72,23 @@ function viewBox(): void {
       description: 'Page not found',
     },
   };
+  let lang: LanguageType;
+  if (localStorage.getItem('lang')) {
+    lang = localStorage.getItem('lang') as LanguageType;
+  } else {
+    lang = DEFAULT_LANGUAGE as LanguageType;
+    localStorage.setItem('lang', `${DEFAULT_LANGUAGE}`);
+  }
+  navTranslate(lang);
+
+  let theme: ThemeType;
+  if (localStorage.getItem('theme')) {
+    theme = localStorage.getItem('theme') as ThemeType;
+  } else {
+    theme = DEFAULT_THEME as ThemeType;
+    localStorage.setItem('theme', `${DEFAULT_THEME}`);
+  }
+  changeThemeNav();
 
   const locationHandler = async () => {
     var location = window.location.hash.replace('#', '');

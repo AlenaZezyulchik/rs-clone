@@ -64,7 +64,9 @@ export function createElement(el: string, mainClass: string, parent: string, gen
 
 export function listenerArea(nameArea: string, event: string, callback: (e: Event) => void) {
   const area = <DomElements>document.querySelector(nameArea);
-  area.addEventListener(event, callback);
+
+  if(area) area.addEventListener(event, callback);
+
 }
 
 export function removeListenerArea(nameArea: string, event: string, callback: (e: Event) => void): void {
