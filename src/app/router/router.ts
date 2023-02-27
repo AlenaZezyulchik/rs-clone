@@ -5,14 +5,16 @@ import createMainPage from '../main/main';
 import createWishboardPage from "../main/wishBoard/wishBoard";
 import { createMyNotesPage } from '../my-notes/my-notes-page'
 import { createMyToDoListPage } from '../my-to-do-list/my-to-do-list-page'
+
 import { navTranslate } from '../navigation/translateNav';
 import { createTestPage } from '../notes/notes';
 import { changeThemeNav } from '../themes/themes';
+import createMusicBox from '../music/music';
 
-const DEFAULT_LANGUAGE = "en";
-const DEFAULT_THEME = "dark";
-export type LanguageType = "en" | "ru";
-export type ThemeType = "dark" | "light";
+const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_THEME = 'dark';
+export type LanguageType = 'en' | 'ru';
+export type ThemeType = 'dark' | 'light';
 
 function viewBox(): void {
   const routes = {
@@ -59,6 +61,7 @@ function viewBox(): void {
     mymusic: {
       render() {
         pageView.innerHTML = '';
+        createMusicBox();
       },
       title: 'Music List',
       description: 'This is the music list page',
@@ -86,7 +89,7 @@ function viewBox(): void {
     theme = localStorage.getItem('theme') as ThemeType;
   } else {
     theme = DEFAULT_THEME as ThemeType;
-    localStorage.setItem('theme', `${DEFAULT_THEME}`)
+    localStorage.setItem('theme', `${DEFAULT_THEME}`);
   }
   changeThemeNav();
 
@@ -100,7 +103,7 @@ function viewBox(): void {
     const route = routes[location as keyof typeof routes] || routes['404'];
     route.render();
     document.title = route.title;
-    //document.querySelector('meta[name="description"]').setAttribute('content', route.description);
+    document.querySelector<Element>('meta[name="description"]')?.setAttribute('content', route.description);
   };
 
   window.addEventListener('hashchange', locationHandler);
