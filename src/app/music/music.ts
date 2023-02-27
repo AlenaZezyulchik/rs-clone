@@ -5,6 +5,7 @@ import pageView from '../variables/dom-variables';
 import createHeader from '../main/header/header';
 import createFooter from '../main/footer/footer';
 import { IValue } from '../types/types';
+import { APIController } from './musicList';
 
 function createMusicBox() {
   pageView.append(createHeader());
@@ -104,6 +105,7 @@ function createMusicBox() {
   function loadTrack(track_index: number) {
     clearInterval(updateTimer);
     reset();
+    APIController();
 
     //curr_track.src = require(`${musicList[track_index].music}`);
 
@@ -272,13 +274,19 @@ function createMusicBox() {
     listOfItems.forEach((link) => link.classList.remove('song-hover'));
   }
 
+  /* function activeTrack() {
+    listOfItems.forEach((link) => link.classList.remove('active-track'));
+    document.getElementById(`${track_index}`)?.classList.add('active-track');
+  } */
+
   listOfItems?.forEach((item) => item.addEventListener('mouseover', activeLink));
   listOfItems?.forEach((item) => item.addEventListener('mouseout', notActiveLink));
+
+  //listOfItems?.forEach((item) => item.addEventListener('click', activeTrack));
 
   listOfItems?.forEach((item) =>
     item.addEventListener('click', function (this: Element, event) {
       track_index = Number(this.id);
-
       loadTrack(track_index);
       playTrack();
     })

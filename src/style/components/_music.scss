@@ -75,6 +75,7 @@
   &__track-name {
     font-size: 1.8rem;
     margin-bottom: 8px;
+    text-align: center;
   }
   &__track-artist {
     text-align: center;
@@ -189,11 +190,6 @@
   &__stroke {
   }
 }
-.active {
-  & ion-icon {
-    color: $green-text;
-  }
-}
 
 .randomActive {
   & ion-icon {
@@ -274,7 +270,7 @@
       font-size: 1rem;
       padding: 8px;
       border-radius: 20px;
-      color: $nav-bg;
+      color: $green-text;
       background-color: $border-clr;
     }
     & ion-icon {
@@ -309,6 +305,11 @@
   cursor: pointer;
 
   background-color: $main-bg;
+  & span {
+    color: $green-text;
+  }
+}
+.active-track {
   & span {
     color: $green-text;
   }
