@@ -6,6 +6,7 @@ import createHeader from '../main/header/header';
 import createFooter from '../main/footer/footer';
 import { IValue } from '../types/types';
 import { APIController } from './musicList';
+import { LanguageType } from '../router/router';
 
 function createMusicBox() {
   pageView.append(createHeader());
@@ -300,5 +301,19 @@ function createMusicBox() {
   next_btn?.addEventListener('click', nextTrack);
   repeat?.addEventListener('click', repeatTrack);
   document.querySelector('.nav__list')?.addEventListener('click', pauseTrack);
+  let lang = localStorage.getItem('lang') as LanguageType;
+  translateMusicInputPlaceholder(lang);
 }
 export default createMusicBox;
+
+export const translateMusicInputPlaceholder = (lang: LanguageType) => {
+  const musicContainer = document.querySelector('.music__wrapper') as HTMLDivElement;
+  const musicInput = document.querySelector('.music__input') as HTMLInputElement;
+  const musicCounter = document.querySelector('.player__now-playing') as HTMLDivElement;
+  if(musicContainer) {
+    if(musicInput) {
+      musicInput.placeholder = (lang === 'en') ? 'Searching...' : (lang === 'ru') ? 'Искать...' : '';
+    }
+
+  }
+};

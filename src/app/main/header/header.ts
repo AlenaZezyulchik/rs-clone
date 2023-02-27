@@ -6,6 +6,8 @@ import { navTranslate } from '../../navigation/translateNav';
 import { translateWishBoardPlaceholder } from '../wishBoard/wishBoard';
 import { translateNotes } from '../../my-notes/workplace-notes';
 import { changeMainTextColor, changeThemeBoard, changeThemeNav, changeThemeFooter, changeThemeHeader, changeThemeLang, changeThemeNotesContainer, changeThemeSelect, changeThemeWishBoardContainer } from '../../themes/themes';
+import { translateToDoButtons, translateToDoListBlockText, translateToDoListMoveToInProgress, translateToDoListTitleText } from '../../my-to-do-list/blocks-lists';
+import { translateMusicInputPlaceholder } from '../../music/music';
 
 function createHeader() {
 
@@ -230,6 +232,10 @@ const changeLanguage = (lang: LanguageType) => {
   navTranslate(lang);
   translateWishBoardPlaceholder(lang);
   translateNotes(lang);
+  translateToDoButtons(lang);
+  translateToDoListBlockText(lang);
+  translateToDoListTitleText(lang);
+  translateMusicInputPlaceholder(lang);
 };
 
 export default createHeader;

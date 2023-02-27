@@ -163,3 +163,33 @@
 .inactive-todo-elem {
   display: none;
 }
+
+@media (max-width: 1350px) {
+
+  .my-todolist-container {
+    flex-direction: column;
+  }
+
+  .todo-container,
+  .in-progress-container,
+  .done-container {
+    width: 100%;
+    height: 40vw;
+  }
+
+  .todolist-itemname,
+  .noteslist-date {
+    font-size: 15px;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .todo-container,
+  .in-progress-container,
+  .done-container {
+    height: 280px;
+  }
+
+}

@@ -1,3 +1,4 @@
+import { LanguageType } from "../router/router";
 
 export interface todoItemInfo {
   text: string;
@@ -99,7 +100,6 @@ export const deleteSomeItem = () => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
       let index = arr.findIndex(item => item.id === +elem.id);
-      console.log(arr[index])
       arr.splice(index, 1);
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
@@ -115,7 +115,6 @@ export const moveToNextBlock = () => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
       let index = arr.findIndex(item => item.id === +elem.id);
-      console.log(arr[index]);
       arr[index].block = 'inprogress'
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
@@ -129,7 +128,6 @@ export const moveToNextBlock = () => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
       let index = arr.findIndex(e => e.id === +elem.id);
-      console.log(arr[index]);
       arr[index].block = 'done'
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
@@ -143,7 +141,6 @@ export const moveToNextBlock = () => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
       let index = arr.findIndex(e => e.id === +elem.id);
-      console.log(arr[index]);
       arr[index].block = 'todo'
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
@@ -159,7 +156,6 @@ export const deleteAllBlockItems = () => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
       let newArr = arr.filter((item) => item.block !== elem.id);
-      console.log(newArr)
       localStorage.setItem('todo-array', JSON.stringify(newArr));
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
@@ -167,3 +163,61 @@ export const deleteAllBlockItems = () => {
     });
   })
 }
+
+export const translateToDoButtons = (lang: LanguageType) => {
+  const todoContainer = document.querySelector('.my-todolist-container') as HTMLDivElement;
+  if(todoContainer) {
+    const toDoListButtons = document.querySelectorAll('.todolist-button') as NodeListOf<HTMLButtonElement>;
+    toDoListButtons.forEach(toDoListButton => {
+      toDoListButton.innerHTML = (lang === 'en') ? 'Add item' : (lang === 'ru') ? 'Добавить заметку' : '';
+    })
+  }
+};
+
+export const translateToDoListBlockText = (lang: LanguageType) => {
+  const todoContainer = document.querySelector('.my-todolist-container') as HTMLDivElement;
+  if(todoContainer) {
+    const toDoTitleText = document.querySelector('.todo-container .todolist-block-text') as HTMLSpanElement;
+    const inProgressTitleText = document.querySelector('.in-progress-container .todolist-block-text') as HTMLSpanElement;
+    const doneTitleText = document.querySelector('.done-container .todolist-block-text') as HTMLSpanElement;
+
+    toDoTitleText.innerHTML = (lang === 'en') ? 'This item has not been started' : (lang === 'ru') ? 'Это планируется выполнить' : '';
+    inProgressTitleText.innerHTML = (lang === 'en') ? 'This is actively being worked on' : (lang === 'ru') ? 'Над этим активно работают' : '';
+    doneTitleText.innerHTML = (lang === 'en') ? 'This has been completed' : (lang === 'ru') ? 'Это было завершено' : '';
+  }
+};
+
+export const translateToDoListTitleText = (lang: LanguageType) => {
+  const todoContainer = document.querySelector('.my-todolist-container') as HTMLDivElement;
+  if(todoContainer) {
+    const toDoTitle = document.querySelector('.todo-container .noteslist-title-text') as HTMLSpanElement;
+    const inProgressTitle = document.querySelector('.in-progress-container .noteslist-title-text') as HTMLSpanElement;
+    const doneTitle = document.querySelector('.done-container .noteslist-title-text') as HTMLSpanElement;
+
+    toDoTitle.innerHTML = (lang === 'en') ? 'ToDo' : (lang === 'ru') ? 'Сделать' : '';
+    inProgressTitle.innerHTML = (lang === 'en') ? 'In Progress' : (lang === 'ru') ? 'В процессе' : '';
+    doneTitle.innerHTML = (lang === 'en') ? 'Done' : (lang === 'ru') ? 'Выполнено' : '';
+  }
+};
+
+export const translateToDoListMoveToInProgress = (lang: LanguageType) => {
+  const todoContainer = document.querySelector('.my-todolist-container') as HTMLDivElement;
+  if(todoContainer) {
+    const moveToToDo = document.querySelectorAll(".todo-item-more-change-todo") as NodeListOf<HTMLButtonElement>;
+    moveToToDo.forEach(elem => {
+      elem.innerHTML = (lang === 'en') ? 'Move to ToDo' : (lang === 'ru') ? 'Переместить в "Сделать"' : '';
+    })
+    const moveToInProgress = document.querySelectorAll(".todo-item-more-change-in-Progress") as NodeListOf<HTMLButtonElement>;
+    moveToInProgress.forEach(elem => {
+      elem.innerHTML = (lang === 'en') ? 'Move to in Progress' : (lang === 'ru') ? 'Переместить в "В процессе"' : '';
+    })
+    const moveToInDone = document.querySelectorAll(".todo-item-more-change-done") as NodeListOf<HTMLButtonElement>;
+    moveToInDone.forEach(elem => {
+      elem.innerHTML = (lang === 'en') ? 'Move to Done' : (lang === 'ru') ? 'Переместить в "Выполненные"' : '';
+    })
+    const deleteItemInTodoList = document.querySelectorAll(".todo-item-more-delete") as NodeListOf<HTMLButtonElement>;
+    deleteItemInTodoList.forEach(elem => {
+      elem.innerHTML = (lang === 'en') ? 'Delete' : (lang === 'ru') ? 'Удалить' : '';
+    })
+  }
+};
