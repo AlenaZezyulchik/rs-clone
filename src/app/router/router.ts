@@ -2,8 +2,10 @@ import createFooter from '../main/footer/footer';
 import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
-import createWishboardPage from '../main/wishBoard/wishBoard';
-import { createMyNotesPage } from '../my-notes/my-notes-page';
+import createWishboardPage from "../main/wishBoard/wishBoard";
+import { createMyNotesPage } from '../my-notes/my-notes-page'
+import { createMyToDoListPage } from '../my-to-do-list/my-to-do-list-page'
+
 import { navTranslate } from '../navigation/translateNav';
 import { createTestPage } from '../notes/notes';
 import { changeThemeNav } from '../themes/themes';
@@ -35,7 +37,7 @@ function viewBox(): void {
     todolist: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createFooter());
+        return createMyToDoListPage();
       },
       title: 'To-Do List',
       description: 'This is the to-do list page',
