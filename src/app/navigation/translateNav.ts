@@ -1,29 +1,25 @@
-import { LanguageType } from "../router/router";
+import { LanguageType } from '../router/router';
 
 export const langArray: any = {
-  "main" :  {
-      "ru": "Главная",
-      "en": "Main",
-  }, 
-  "notes": {
-      "ru": "Мои заметки",
-      "en": "My Notes",
+  main: {
+    ru: 'Главная',
+    en: 'Main',
   },
-  "todo": {
-    "ru": "Мои списки дел",
-    "en": "My To-Do",
+  notes: {
+    ru: 'Мои заметки',
+    en: 'My Notes',
   },
-  "wishboard": {
-    "ru": "Моя доска желаний",
-    "en": "My Wishboard",
+  todo: {
+    ru: 'Мои списки дел',
+    en: 'My To-Do',
   },
-  "study": {
-    "ru": "Моё обучение",
-    "en": "My Study", 
+  wishboard: {
+    ru: 'Моя доска желаний',
+    en: 'My Wishboard',
   },
-  "music": {
-    "ru": "Моя музыка",
-    "en": "My Music", 
+  music: {
+    ru: 'Моя музыка',
+    en: 'My Music',
   },
 };
 
@@ -32,14 +28,11 @@ export const navTranslate = (lang: LanguageType) => {
   const notes = document.querySelector('.lang__notes') as HTMLSpanElement;
   const todo = document.querySelector('.lang__todo') as HTMLSpanElement;
   const wishBoard = document.querySelector('.lang__wishboard') as HTMLSpanElement;
-  const study = document.querySelector('.lang__study') as HTMLSpanElement;
   const music = document.querySelector('.lang__music') as HTMLSpanElement;
 
-  main.innerHTML = (lang === "en") ? `${langArray.main.en}` : (lang === "ru") ? `${langArray.main.ru}` : "";
-  notes.innerHTML = (lang === "en") ? `${langArray.notes.en}` : (lang === "ru") ? `${langArray.notes.ru}` : "";
-  todo.innerHTML = (lang === "en") ? `${langArray.todo.en}` : (lang === "ru") ? `${langArray.todo.ru}` : "";
-  wishBoard.innerHTML = (lang === "en") ? `${langArray.wishboard.en}` : (lang === "ru") ? `${langArray.wishboard.ru}` : "";
-  study.innerHTML = (lang === "en") ? `${langArray.study.en}` : (lang === "ru") ? `${langArray.study.ru}` : "";
-  music.innerHTML = (lang === "en") ? `${langArray.music.en}` : (lang === "ru") ? `${langArray.music.ru}` : "";
+  main.innerHTML = lang === 'en' ? `${langArray.main.en}` : lang === 'ru' ? `${langArray.main.ru}` : '';
+  notes.innerHTML = lang === 'en' ? `${langArray.notes.en}` : lang === 'ru' ? `${langArray.notes.ru}` : '';
+  todo.innerHTML = lang === 'en' ? `${langArray.todo.en}` : lang === 'ru' ? `${langArray.todo.ru}` : '';
+  wishBoard.innerHTML = lang === 'en' ? `${langArray.wishboard.en}` : lang === 'ru' ? `${langArray.wishboard.ru}` : '';
+  music.innerHTML = lang === 'en' ? `${langArray.music.en}` : lang === 'ru' ? `${langArray.music.ru}` : '';
 };
-
