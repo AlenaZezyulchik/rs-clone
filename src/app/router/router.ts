@@ -7,6 +7,7 @@ import { createMyNotesPage } from '../my-notes/my-notes-page';
 import { navTranslate } from '../navigation/translateNav';
 import { createTestPage } from '../notes/notes';
 import { changeThemeNav } from '../themes/themes';
+import createMusicBox from '../music/music';
 
 const DEFAULT_LANGUAGE = 'en';
 const DEFAULT_THEME = 'dark';
