@@ -190,11 +190,15 @@
   }
 }
 .active {
-  color: black;
+  & ion-icon {
+    color: $green-text;
+  }
 }
 
 .randomActive {
-  color: black;
+  & ion-icon {
+    color: $green-text;
+  }
 }
 .rotate {
   animation: rotation 8s infinite linear;
