@@ -62,7 +62,7 @@ export function createElement(el: string, mainClass: string, parent: string, gen
   appendElement(container, element);
 }
 
-export async function listenerArea(nameArea: string, event: string, callback: (e: Event) => void) {
+export function listenerArea(nameArea: string, event: string, callback: (e: Event) => void) {
   const area = <DomElements>document.querySelector(nameArea);
   area.addEventListener(event, callback);
 }

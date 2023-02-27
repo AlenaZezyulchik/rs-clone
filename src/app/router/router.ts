@@ -1,10 +1,10 @@
-import alertTo from '../notes/notes';
 import createMainBoard from '../main/mainBoard/mainBoard';
 import createFooter from '../main/footer/footer';
 import pageView from '../variables/dom-variables';
 import { appendElement } from '../variables/dom-elements';
 import createMainPage from '../main/main';
 import createWishboardPage from '../main/wishBoard/wishBoard';
+import createMusicBox from '../music/music';
 
 function viewBox(): void {
   const routes = {
@@ -36,7 +36,7 @@ function viewBox(): void {
     mywishboard: {
       render() {
         pageView.innerHTML = '';
-        appendElement(pageView, createWishboardPage());
+        createWishboardPage();
       },
       title: 'To-Do List',
       description: 'This is the wishboard page',
@@ -76,7 +76,7 @@ function viewBox(): void {
     const route = routes[location as keyof typeof routes] || routes['404'];
     route.render();
     document.title = route.title;
-    //document.querySelector('meta[name="description"]').setAttribute('content', route.description);
+    document.querySelector<Element>('meta[name="description"]')?.setAttribute('content', route.description);
   };
 
   window.addEventListener('hashchange', locationHandler);

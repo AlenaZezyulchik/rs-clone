@@ -66,7 +66,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpe?g|png|gif|webp|svg|ico)$/i,
+        test: /\.(jpe?g|png|gif|webp|svg|ico|mp3)$/i,
         type: 'asset/resource',
       },
       { test: /\.([cm]?ts|tsx)$/, loader: 'ts-loader', exclude: /node_modules/ },
