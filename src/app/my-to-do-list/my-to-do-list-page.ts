@@ -5,16 +5,6 @@ import { createNewDoneNote } from './done';
 import { showToDoInput, creatingTodoItemsList, getALLTodoItems, deleteSomeItem, moveToNextBlock, deleteAllBlockItems, translateToDoButtons, translateToDoListBlockText, translateToDoListTitleText, translateToDoListMoveToInProgress } from './blocks-lists';
 import { LanguageType } from '../router/router';
 
-import {
-  showToDoInput,
-  creatingTodoItemsList,
-  getALLTodoItems,
-  deleteSomeItem,
-  moveToNextBlock,
-  deleteAllBlockItems,
-} from './blocks-lists';
-
-
 export const createMyToDoListPage = (): HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
   const myToDoListContainer = document.createElement('div') as HTMLElement;
@@ -69,7 +59,7 @@ export const createMyToDoListPage = (): HTMLElement => {
   <div class="todolist-items-list done-items-list"></div>
   <input class="done-input" type="text" id="done" placeholder="Add your item">
   <button class="todolist-button done-button">Add item</button>`;
-  translate-todo-music-pages
+
   const lang = localStorage.getItem('lang') as LanguageType;
 
   mainContainer.prepend(myToDoListContainer);
