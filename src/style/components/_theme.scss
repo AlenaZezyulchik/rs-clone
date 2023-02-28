@@ -41,6 +41,20 @@ a.dark,
   color: #cdcdcd;
 }
 
+.todo-container.dark,
+.in-progress-container.dark,
+.done-container.dark {
+  background-color: $board-bg;
+}
+
+.todo-input.dark,
+.inprogress-input.dark,
+.done-input.dark {
+  height: 23px;
+  border-radius: 4px;
+  background-color: $board-bg;
+}
+
 body.light,
 .creating-note-container.light {
   background-color: #ffffff;
@@ -50,7 +64,6 @@ body.light,
 .nav__wrapper.light,
 select.light {
   background: #e8e9e9;
-  border-left: 10px solid #e8e9e9;
 }
 
 .nav__item.light {
@@ -105,4 +118,18 @@ a.light,
 .developers.light a,
 .logo__title.light {
   color: #575757;
+}
+
+.todo-container.light,
+.in-progress-container.light,
+.done-container.light {
+  background-color: #e6e6e6;
+}
+
+.todo-input.light,
+.inprogress-input.light,
+.done-input.light {
+  height: 23px;
+  border-radius: 4px;
+  background-color: #e6e6e6;
 }

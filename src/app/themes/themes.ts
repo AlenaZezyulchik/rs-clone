@@ -137,3 +137,27 @@ export const changeMainTextColor = (userName: HTMLInputElement) => {
     if (theme === 'light') setLightTheme(userName);
   }
 };
+
+export const changeThemeToDoListBackground = (toDoListContainer: HTMLDivElement, inProgressBlock: HTMLDivElement, doneBlock: HTMLDivElement) => {
+  const theme = localStorage.getItem('theme') as ThemeType;
+  if (toDoListContainer) {
+    if (theme === 'dark') {
+      setDarkTheme(toDoListContainer);
+      setDarkTheme(inProgressBlock);
+      setDarkTheme(doneBlock);
+    };
+    if (theme === 'light') {
+      setLightTheme(toDoListContainer);
+      setLightTheme(inProgressBlock);
+      setLightTheme(doneBlock);
+    };
+  }
+};
+
+export const changeThemeToDoAddInput = (toDoListInput: HTMLElement) => {
+  const theme = localStorage.getItem('theme') as ThemeType;
+  if (toDoListInput) {
+    if (theme === 'dark') {setDarkTheme(toDoListInput)};
+    if (theme === 'light') {setLightTheme(toDoListInput)};
+  }
+};

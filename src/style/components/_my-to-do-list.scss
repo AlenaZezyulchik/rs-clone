@@ -12,7 +12,6 @@
   margin-top: 40px;
   padding: 10px;
   border-radius: 1%;
-  background-color: $board-bg;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -98,12 +97,6 @@
     left: -80px
   }
   
-}
-
-.todo-input, .inprogress-input, .done-input {
-  height: 23px;
-  border-radius: 4px;
-  background-color: $board-bg;
 }
 
 .block-delete-button, .item-more-button {

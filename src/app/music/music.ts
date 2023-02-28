@@ -116,7 +116,7 @@ function createMusicBox() {
     (track_art as HTMLImageElement).style.backgroundImage = 'url(' + `${musicList[track_index].img}` + ')';
     (track_name as HTMLElement).textContent = musicList[track_index].name;
     (track_artist as HTMLElement).textContent = musicList[track_index].artist;
-    (now_playing as HTMLElement).textContent = 'Playing music ' + (track_index + 1) + ' of ' + musicList.length;
+    //(now_playing as HTMLElement).textContent = 'Playing music ' + (track_index + 1) + ' of ' + musicList.length;
 
     updateTimer = setInterval(setUpdate, 1000);
 
@@ -310,10 +310,11 @@ export const translateMusicInputPlaceholder = (lang: LanguageType) => {
   const musicContainer = document.querySelector('.music__wrapper') as HTMLDivElement;
   const musicInput = document.querySelector('.music__input') as HTMLInputElement;
   const musicCounter = document.querySelector('.player__now-playing') as HTMLDivElement;
+  let track_index: number = Number(localStorage.getItem('track-index')) ? Number(localStorage.getItem('track-index')) : 0;
   if(musicContainer) {
     if(musicInput) {
       musicInput.placeholder = (lang === 'en') ? 'Searching...' : (lang === 'ru') ? 'Искать...' : '';
     }
-
+    (musicCounter as HTMLElement).textContent = (lang === 'en') ? 'Playing music ' + (track_index + 1) + ' of ' + musicList.length : (lang === 'ru') ? 'Играет трек ' + (track_index + 1) + ' из ' + musicList.length : '';
   }
 };

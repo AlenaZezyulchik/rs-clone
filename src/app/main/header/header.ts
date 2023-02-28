@@ -5,7 +5,7 @@ import { getQuote, translateDescription } from '../mainBoard/mainBoard';
 import { navTranslate } from '../../navigation/translateNav';
 import { translateWishBoardPlaceholder } from '../wishBoard/wishBoard';
 import { translateNotes } from '../../my-notes/workplace-notes';
-import { changeMainTextColor, changeThemeBoard, changeThemeNav, changeThemeFooter, changeThemeHeader, changeThemeLang, changeThemeNotesContainer, changeThemeSelect, changeThemeWishBoardContainer } from '../../themes/themes';
+import { changeMainTextColor, changeThemeBoard, changeThemeNav, changeThemeFooter, changeThemeHeader, changeThemeLang, changeThemeNotesContainer, changeThemeSelect, changeThemeWishBoardContainer, changeThemeToDoListBackground, changeThemeToDoAddInput } from '../../themes/themes';
 import { translateToDoButtons, translateToDoListBlockText, translateToDoListMoveToInProgress, translateToDoListTitleText } from '../../my-to-do-list/blocks-lists';
 import { translateMusicInputPlaceholder } from '../../music/music';
 
@@ -136,6 +136,9 @@ const createThemeSelect = (rightContainer: HTMLElement) => {
     const notesList = document.querySelector('.noteslist') as HTMLDivElement;
     const userName = document.querySelector('.user-name') as HTMLInputElement;
     const footerItems = document.querySelectorAll('.developers a') as NodeListOf<HTMLElement>;
+    const myToDoBlock = document.querySelector('.todo-container') as HTMLDivElement;
+    const inProgressBlock = document.querySelector('.in-progress-container') as HTMLDivElement;
+    const doneBlock = document.querySelector('.done-container') as HTMLDivElement;
     changeThemeNav();
     changeThemeBoard(boardNote, boardTodo, boardWishBoard, boardMusic);
     changeThemeHeader(header);
@@ -145,6 +148,7 @@ const createThemeSelect = (rightContainer: HTMLElement) => {
     changeThemeWishBoardContainer(wishBoardContainer, wishBoardInput);
     changeThemeNotesContainer (myNotesContainer, creatingNoteBlock, textNote, notesList);
     changeMainTextColor(userName);
+    changeThemeToDoListBackground(myToDoBlock, inProgressBlock, doneBlock);
   })
   changeThemeSelect(themeSelect);
   return themeSelect;
@@ -235,6 +239,7 @@ const changeLanguage = (lang: LanguageType) => {
   translateToDoButtons(lang);
   translateToDoListBlockText(lang);
   translateToDoListTitleText(lang);
+  translateToDoListMoveToInProgress(lang);
   translateMusicInputPlaceholder(lang);
 };
 

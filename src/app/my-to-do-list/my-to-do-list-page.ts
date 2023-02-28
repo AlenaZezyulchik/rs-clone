@@ -4,13 +4,14 @@ import { createNewDoneNote } from './done';
 
 import { showToDoInput, creatingTodoItemsList, getALLTodoItems, deleteSomeItem, moveToNextBlock, deleteAllBlockItems, translateToDoButtons, translateToDoListBlockText, translateToDoListTitleText, translateToDoListMoveToInProgress } from './blocks-lists';
 import { LanguageType } from '../router/router';
+import { changeThemeToDoAddInput, changeThemeToDoListBackground } from '../themes/themes';
 
 export const createMyToDoListPage = (): HTMLElement => {
   const mainContainer = document.querySelector('.container__main') as HTMLElement;
-  const myToDoListContainer = document.createElement('div') as HTMLElement;
-  const myToDoBlock = document.createElement('div') as HTMLElement;
-  const inProgressBlock = document.createElement('div') as HTMLElement;
-  const doneBlock = document.createElement('div') as HTMLElement;
+  const myToDoListContainer = document.createElement('div') as HTMLDivElement;
+  const myToDoBlock = document.createElement('div') as HTMLDivElement;
+  const inProgressBlock = document.createElement('div') as HTMLDivElement;
+  const doneBlock = document.createElement('div') as HTMLDivElement;
 
   myToDoListContainer.classList.add('my-todolist-container');
   myToDoBlock.classList.add('todo-container');
@@ -61,7 +62,9 @@ export const createMyToDoListPage = (): HTMLElement => {
   <button class="todolist-button done-button">Add item</button>`;
 
   const lang = localStorage.getItem('lang') as LanguageType;
-
+  const toDoListInput = myToDoListContainer.querySelector('.todo-input') as HTMLElement;
+  const inProgressInput = myToDoListContainer.querySelector('.inprogress-input') as HTMLElement;
+  const doneInput = myToDoListContainer.querySelector('.done-input') as HTMLElement; 
   mainContainer.prepend(myToDoListContainer);
   showToDoInput();
   createNewNote();
@@ -75,6 +78,10 @@ export const createMyToDoListPage = (): HTMLElement => {
   translateToDoListBlockText(lang);
   translateToDoListTitleText(lang);
   translateToDoListMoveToInProgress(lang);
+  changeThemeToDoListBackground(myToDoBlock, inProgressBlock, doneBlock);
+  changeThemeToDoAddInput(toDoListInput);
+  changeThemeToDoAddInput(inProgressInput);
+  changeThemeToDoAddInput(doneInput);
 
   return myToDoListContainer;
 };

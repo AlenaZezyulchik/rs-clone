@@ -1,4 +1,5 @@
 import { LanguageType } from "../router/router";
+import { changeThemeToDoAddInput } from "../themes/themes";
 
 export interface todoItemInfo {
   text: string;
@@ -17,14 +18,17 @@ export const showToDoInput = () => {
   todoButton.addEventListener('click', ()=> {
     todoButton.classList.toggle('inactive-todo-elem')
     todoInput.classList.toggle('active-todo-elem')
+    changeThemeToDoAddInput(todoInput);
   })
   inprogressButton.addEventListener('click', ()=> {
     inprogressButton.classList.toggle('inactive-todo-elem')
     inprogressInput.classList.toggle('active-todo-elem')
+    changeThemeToDoAddInput(inprogressInput)
   })
   doneButton.addEventListener('click', ()=> {
     doneButton.classList.toggle('inactive-todo-elem')
     doneInput.classList.toggle('active-todo-elem')
+    changeThemeToDoAddInput(doneInput)
   })
 }
 
@@ -99,12 +103,14 @@ export const deleteSomeItem = () => {
   deleteItemButtons.forEach((elem) => {
     elem.addEventListener('click', () => {
       const arr = getALLTodoItems();
+      let lang = localStorage.getItem('lang') as LanguageType;
       let index = arr.findIndex(item => item.id === +elem.id);
       arr.splice(index, 1);
       localStorage.setItem('todo-array', JSON.stringify(arr));
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
       moveToNextBlock();
+      translateToDoListMoveToInProgress(lang);
     });
   });
 };
@@ -113,6 +119,7 @@ export const moveToNextBlock = () => {
   const moveToInprogress = document.querySelectorAll('.todo-item-more-change-in-Progress') as NodeListOf<HTMLElement>;
   moveToInprogress.forEach((elem) => {
     elem.addEventListener('click', () => {
+      let lang = localStorage.getItem('lang') as LanguageType;
       const arr = getALLTodoItems();
       let index = arr.findIndex(item => item.id === +elem.id);
       arr[index].block = 'inprogress'
@@ -120,12 +127,14 @@ export const moveToNextBlock = () => {
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
       moveToNextBlock();
+      translateToDoListMoveToInProgress(lang);
     });
   });
 
   const moveToDone = document.querySelectorAll('.todo-item-more-change-done') as NodeListOf<HTMLElement>;
   moveToDone.forEach((elem) => {
     elem.addEventListener('click', () => {
+      let lang = localStorage.getItem('lang') as LanguageType;
       const arr = getALLTodoItems();
       let index = arr.findIndex(e => e.id === +elem.id);
       arr[index].block = 'done'
@@ -133,12 +142,14 @@ export const moveToNextBlock = () => {
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
       moveToNextBlock()
+      translateToDoListMoveToInProgress(lang);
     });
   });
 
   const moveTodo = document.querySelectorAll('.todo-item-more-change-todo') as NodeListOf<HTMLElement>;
   moveTodo.forEach((elem) => {
     elem.addEventListener('click', () => {
+      let lang = localStorage.getItem('lang') as LanguageType;
       const arr = getALLTodoItems();
       let index = arr.findIndex(e => e.id === +elem.id);
       arr[index].block = 'todo'
@@ -146,6 +157,7 @@ export const moveToNextBlock = () => {
       creatingTodoItemsList(getALLTodoItems());
       deleteSomeItem();
       moveToNextBlock();
+      translateToDoListMoveToInProgress(lang);
     });
   });
 }
