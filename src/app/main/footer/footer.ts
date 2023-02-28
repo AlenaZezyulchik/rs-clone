@@ -22,6 +22,11 @@ function createFooter() {
   <li>
     <img class="github__icon" src="https://portal.edu.asu.ru/blocks/exaport/item_thumb.php?item_id=3007&access=hash/24570-416d5448" alt="github" />
     <a href="https://github.com/alenazezyulchik">alenazezyulchik</a>
+  </li>
+  <li>
+    <a href="https://rs.school/js/">
+      <img class="rs__icon" src="https://rs.school/images/rs_school_js.svg" alt="github" />
+    </a>
   </li>`;
   
   const footerItems = developers.querySelectorAll('.developers a') as NodeListOf<HTMLElement>;

@@ -21,6 +21,11 @@
   border-radius: 50%;
 }
 
+.rs__icon {
+  width: 50px;
+  box-shadow: 0em 0px 2em 0px #ffffff;
+}
+
 @media (max-width: 400px) {
   * {
     font-size: 12px;
